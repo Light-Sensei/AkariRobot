@@ -1,6 +1,6 @@
 # AkariRobot
 
-        [Group Managinf Bot](https://telegra.ph/file/f5ac4d132937010e8df2d.jpg)
+
         
         
 </h2>
