@@ -43,7 +43,7 @@ from AkariRobot.modules.helper_funcs.chat_status import sudo_plus
 from AkariRobot.modules.helper_funcs.extraction import extract_user
 from AkariRobot import telethn
 
-SHIKIMORI_PIC = "https://telegra.ph/file/b4990dc110e4b1565f4a6.jpg"
+AKARI_VID = "https://telegra.ph/file/7ef542475e2b5962144d1.mp4"
 
 def no_by_per(totalhp, percentage):
     """
@@ -468,10 +468,10 @@ def stats(update, context):
     status += "*♡ python-Telegram-Bot:* " + str(ptbver) + "\n"
     status += "*♡ Uptime:* " + str(botuptime) + "\n"
     try:
-            update.effective_message.reply_photo(
-                SHIKIMORI_PIC,
+            update.effective_message.reply_animation(
+                AKARI_VID,
             status
-            + "\n*Shikimori statistics*:\n"
+            + "\n*Akari statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS])
             + f"\n\n[♡ Support ♡](https://t.me/{SUPPORT_CHAT}) | [♡ Updates ♡](https://t.me/AkariWatanabeupdates)\n\n"
             + "\n╘══「 by [Light Yagami (夜神月)](https://t.me/yagami_kun) 」\n",
