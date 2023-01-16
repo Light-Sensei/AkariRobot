@@ -43,7 +43,7 @@ from AkariRobot.modules.helper_funcs.chat_status import sudo_plus
 from AkariRobot.modules.helper_funcs.extraction import extract_user
 from AkariRobot import telethn
 
-AKARI_PIC = "https://telegra.ph/file/3b48e1fb99a6dc4cbf018.jpg"
+SHIKIMORI_PIC = "https://telegra.ph/file/3b48e1fb99a6dc4cbf018.jpg"
 
 def no_by_per(totalhp, percentage):
     """
@@ -469,7 +469,7 @@ def stats(update, context):
     status += "*♡ Uptime:* " + str(botuptime) + "\n"
     try:
             update.effective_message.reply_photo(
-                AKARI_PIC,
+                SHIKIMORI_PIC,
             status
             + "\n*Akari statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS])
