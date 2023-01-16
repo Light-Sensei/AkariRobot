@@ -1,6 +1,6 @@
-import ShikimoriRobot.modules.sql.blacklistusers_sql as sql
-from ShikimoriRobot import ALLOW_EXCL
-from ShikimoriRobot import DEV_USERS, DRAGONS, DEMONS, TIGERS, WOLVES
+import AkariRobot.modules.sql.blacklistusers_sql as sql
+from AkariRobot import ALLOW_EXCL
+from AkariRobot import DEV_USERS, DRAGONS, DEMONS, TIGERS, WOLVES
 
 from telegram import Update
 from telegram.ext import CommandHandler, MessageHandler, RegexHandler, Filters

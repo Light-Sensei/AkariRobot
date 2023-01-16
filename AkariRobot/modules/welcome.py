@@ -4,8 +4,8 @@ import re
 import time
 from functools import partial
 from io import BytesIO
-import ShikimoriRobot.modules.sql.welcome_sql as sql
-from ShikimoriRobot import (
+import AkariRobot.modules.sql.welcome_sql as sql
+from AkariRobot import (
     DEV_USERS,
     OWNER_ID,
     DRAGONS,
@@ -16,19 +16,19 @@ from ShikimoriRobot import (
     dispatcher,
     JOIN_LOGGER,
 )
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     user_admin,
 )
-from ShikimoriRobot.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from ShikimoriRobot.modules.helper_funcs.msg_types import get_welcome_type
-from ShikimoriRobot.modules.helper_funcs.handlers import MessageHandlerChecker
-from ShikimoriRobot.modules.helper_funcs.string_handling import (
+from AkariRobot.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from AkariRobot.modules.helper_funcs.msg_types import get_welcome_type
+from AkariRobot.modules.helper_funcs.handlers import MessageHandlerChecker
+from AkariRobot.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
     markdown_parser,
 )
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.sql.global_bans_sql import is_user_gbanned
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.sql.global_bans_sql import is_user_gbanned
 from telegram import (
     ChatPermissions,
     InlineKeyboardButton,
@@ -45,7 +45,7 @@ from telegram.ext import (
     MessageHandler,
 )
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
 
 VALID_WELCOME_FORMATTERS = [
     "first",

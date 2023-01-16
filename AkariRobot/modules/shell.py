@@ -1,7 +1,7 @@
 import subprocess
 
-from ShikimoriRobot import LOGGER, dispatcher
-from ShikimoriRobot.modules.helper_funcs.chat_status import dev_plus
+from AkariRobot import LOGGER, dispatcher
+from AkariRobot.modules.helper_funcs.chat_status import dev_plus
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, CommandHandler
 from telegram.ext.dispatcher import run_async

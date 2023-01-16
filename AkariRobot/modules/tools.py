@@ -1,4 +1,4 @@
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
 
 
 def helps(chat):

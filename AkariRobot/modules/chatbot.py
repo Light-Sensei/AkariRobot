@@ -3,7 +3,7 @@ import re
 import os
 import html
 import requests
-import ShikimoriRobot.modules.sql.chatbot_sql as sql
+import AkariRobot.modules.sql.chatbot_sql as sql
 
 from time import sleep
 from telegram import ParseMode
@@ -15,10 +15,10 @@ from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
 from telegram.error import BadRequest, RetryAfter, Unauthorized
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 
-from ShikimoriRobot.modules.helper_funcs.filters import CustomFilters
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
-from ShikimoriRobot import dispatcher, updater, SUPPORT_CHAT
-from ShikimoriRobot.modules.log_channel import gloggable
+from AkariRobot.modules.helper_funcs.filters import CustomFilters
+from AkariRobot.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
+from AkariRobot import dispatcher, updater, SUPPORT_CHAT
+from AkariRobot.modules.log_channel import gloggable
 
 @run_async
 @user_admin_no_reply

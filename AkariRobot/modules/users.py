@@ -10,10 +10,10 @@ from telegram.ext import (
     MessageHandler,
 )
 
-import ShikimoriRobot.modules.sql.users_sql as sql
-from ShikimoriRobot import DEV_USERS, LOGGER, OWNER_ID, dispatcher
-from ShikimoriRobot.modules.helper_funcs.chat_status import dev_plus, sudo_plus
-from ShikimoriRobot.modules.sql.users_sql import get_all_users
+import AkariRobot.modules.sql.users_sql as sql
+from AkariRobot import DEV_USERS, LOGGER, OWNER_ID, dispatcher
+from AkariRobot.modules.helper_funcs.chat_status import dev_plus, sudo_plus
+from AkariRobot.modules.sql.users_sql import get_all_users
 
 USERS_GROUP = 4
 CHAT_GROUP = 5

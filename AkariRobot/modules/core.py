@@ -1,15 +1,15 @@
-from ShikimoriRobot import telethn as tbot
-from ShikimoriRobot.events import register
+from AkariRobot import telethn as tbot
+from AkariRobot.events import register
 import os
 import asyncio
 import os
 import time
 from datetime import datetime
-from ShikimoriRobot import OWNER_ID, DEV_USERS
-from ShikimoriRobot import TEMP_DOWNLOAD_DIRECTORY as path
-from ShikimoriRobot import TEMP_DOWNLOAD_DIRECTORY
+from AkariRobot import OWNER_ID, DEV_USERS
+from AkariRobot import TEMP_DOWNLOAD_DIRECTORY as path
+from AkariRobot import TEMP_DOWNLOAD_DIRECTORY
 from datetime import datetime
-water = './ShikimoriRobot/resources/Siesta.jpg'
+water = './AkariRobot/resources/Siesta.jpg'
 client = tbot
 
 @register(pattern=r"^/send ?(.*)")
@@ -21,7 +21,7 @@ async def Prof(event):
     thumb = water
     message_id = event.message.id
     input_str = event.pattern_match.group(1)
-    the_plugin_file = "./ShikimoriRobot/modules/{}.py".format(input_str)
+    the_plugin_file = "./AkariRobot/modules/{}.py".format(input_str)
     if os.path.exists(the_plugin_file):
      message_id = event.message.id
      await event.client.send_file(

@@ -6,9 +6,9 @@ from typing import List
 from random import randint
 
 from sqlalchemy.sql.expression import text
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot import (
+from AkariRobot.modules.helper_funcs.chat_status import user_admin
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot import (
     dispatcher,
     WALL_API,
 )
@@ -29,10 +29,10 @@ from telegram import (
 from telegram.error import BadRequest
 from telegram.ext.dispatcher import run_async
 from telegram.ext import CallbackContext, Filters, CommandHandler
-from ShikimoriRobot import StartTime
-from ShikimoriRobot.modules.helper_funcs.chat_status import sudo_plus
-from ShikimoriRobot.modules.helper_funcs.alternate import send_action, typing_action
-from ShikimoriRobot.modules.language import gs
+from AkariRobot import StartTime
+from AkariRobot.modules.helper_funcs.chat_status import sudo_plus
+from AkariRobot.modules.helper_funcs.alternate import send_action, typing_action
+from AkariRobot.modules.language import gs
 
 
 

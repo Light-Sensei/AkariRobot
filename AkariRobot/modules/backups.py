@@ -5,23 +5,23 @@ from telegram import ParseMode, Message
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler
 
-import ShikimoriRobot.modules.sql.notes_sql as sql
-from ShikimoriRobot import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
-from ShikimoriRobot.__main__ import DATA_IMPORT
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin
-from ShikimoriRobot.modules.helper_funcs.alternate import typing_action
+import AkariRobot.modules.sql.notes_sql as sql
+from AkariRobot import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
+from AkariRobot.__main__ import DATA_IMPORT
+from AkariRobot.modules.helper_funcs.chat_status import user_admin
+from AkariRobot.modules.helper_funcs.alternate import typing_action
 
-# from ShikimoriRobot.modules.rules import get_rules
-import ShikimoriRobot.modules.sql.rules_sql as rulessql
+# from AkariRobot.modules.rules import get_rules
+import AkariRobot.modules.sql.rules_sql as rulessql
 
-# from ShikimoriRobot.modules.sql import warns_sql as warnssql
-import ShikimoriRobot.modules.sql.blacklist_sql as blacklistsql
-from ShikimoriRobot.modules.sql import disable_sql as disabledsql
+# from AkariRobot.modules.sql import warns_sql as warnssql
+import AkariRobot.modules.sql.blacklist_sql as blacklistsql
+from AkariRobot.modules.sql import disable_sql as disabledsql
 
-# from ShikimoriRobot.modules.sql import cust_filters_sql as filtersql
-# import ShikimoriRobot.modules.sql.welcome_sql as welcsql
-import ShikimoriRobot.modules.sql.locks_sql as locksql
-from ShikimoriRobot.modules.connection import connected
+# from AkariRobot.modules.sql import cust_filters_sql as filtersql
+# import AkariRobot.modules.sql.welcome_sql as welcsql
+import AkariRobot.modules.sql.locks_sql as locksql
+from AkariRobot.modules.connection import connected
 
 
 @user_admin

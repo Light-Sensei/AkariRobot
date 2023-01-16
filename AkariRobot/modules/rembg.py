@@ -25,9 +25,9 @@ import requests
 from telethon import types
 from telethon.tl import functions
 
-from ShikimoriRobot import REM_BG_API_KEY
-from ShikimoriRobot.events import register
-from ShikimoriRobot import telethn as tbot
+from AkariRobot import REM_BG_API_KEY
+from AkariRobot.events import register
+from AkariRobot import telethn as tbot
 
 REM_BG_API_KEY = "REM_BG_API_KEY"
 TEMP_DOWNLOAD_DIRECTORY = "./"

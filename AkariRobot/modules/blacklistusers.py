@@ -1,7 +1,7 @@
 # Module to blacklist users and prevent them from using commands by @TheRealPhoenix
 import html
-import ShikimoriRobot.modules.sql.blacklistusers_sql as sql
-from ShikimoriRobot import (
+import AkariRobot.modules.sql.blacklistusers_sql as sql
+from AkariRobot import (
     DEV_USERS,
     OWNER_ID,
     DRAGONS,
@@ -10,12 +10,12 @@ from ShikimoriRobot import (
     WOLVES,
     dispatcher,
 ) 
-from ShikimoriRobot.modules.helper_funcs.chat_status import dev_plus
-from ShikimoriRobot.modules.helper_funcs.extraction import (
+from AkariRobot.modules.helper_funcs.chat_status import dev_plus
+from AkariRobot.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from ShikimoriRobot.modules.log_channel import gloggable
+from AkariRobot.modules.log_channel import gloggable
 from telegram import ParseMode, Update
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler

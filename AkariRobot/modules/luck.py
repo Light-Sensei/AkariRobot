@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShikimoriRobot import DEV_USERS, DEMONS,pbot as app
+from AkariRobot import DEV_USERS, DEMONS,pbot as app
 
 SUDOERS = DEMONS.append(DEV_USERS)
 

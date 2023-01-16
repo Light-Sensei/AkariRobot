@@ -1,6 +1,6 @@
 import threading
 
-from ShikimoriRobot.modules.sql import BASE, SESSION
+from AkariRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, BigInteger, UnicodeText
 
 class AFK(BASE):

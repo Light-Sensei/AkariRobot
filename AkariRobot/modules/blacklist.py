@@ -6,19 +6,19 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
 
-import ShikimoriRobot.modules.sql.blacklist_sql as sql
-from ShikimoriRobot import dispatcher, LOGGER
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from ShikimoriRobot.modules.helper_funcs.extraction import extract_text
-from ShikimoriRobot.modules.helper_funcs.misc import split_message
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.warns import warn
-from ShikimoriRobot.modules.helper_funcs.string_handling import extract_time
-from ShikimoriRobot.modules.connection import connected
-from ShikimoriRobot.modules.sql.approve_sql import is_approved
-from ShikimoriRobot.modules.helper_funcs.alternate import send_message, typing_action
-from ShikimoriRobot.modules.language import gs
+import AkariRobot.modules.sql.blacklist_sql as sql
+from AkariRobot import dispatcher, LOGGER
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from AkariRobot.modules.helper_funcs.extraction import extract_text
+from AkariRobot.modules.helper_funcs.misc import split_message
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.warns import warn
+from AkariRobot.modules.helper_funcs.string_handling import extract_time
+from AkariRobot.modules.connection import connected
+from AkariRobot.modules.sql.approve_sql import is_approved
+from AkariRobot.modules.helper_funcs.alternate import send_message, typing_action
+from AkariRobot.modules.language import gs
 
 BLACKLIST_GROUP = 11
 

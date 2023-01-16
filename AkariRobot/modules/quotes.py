@@ -4,9 +4,9 @@ from traceback import format_exc
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShikimoriRobot import arq
-from ShikimoriRobot.utils.errors import capture_err
-from ShikimoriRobot import pbot as app
+from AkariRobot import arq
+from AkariRobot.utils.errors import capture_err
+from AkariRobot import pbot as app
 
 
 async def quotify(messages: list):

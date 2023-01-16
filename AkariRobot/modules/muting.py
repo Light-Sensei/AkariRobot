@@ -2,8 +2,8 @@ import html
 import re
 from typing import Optional
 
-from ShikimoriRobot import LOGGER, TIGERS, dispatcher
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot import LOGGER, TIGERS, dispatcher
+from AkariRobot.modules.helper_funcs.chat_status import (
     bot_admin,
     can_restrict,
     connection_status,
@@ -11,12 +11,12 @@ from ShikimoriRobot.modules.helper_funcs.chat_status import (
     user_admin,
     user_admin_no_reply,
 )
-from ShikimoriRobot.modules.helper_funcs.extraction import (
+from AkariRobot.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from ShikimoriRobot.modules.helper_funcs.string_handling import extract_time
-from ShikimoriRobot.modules.log_channel import loggable
+from AkariRobot.modules.helper_funcs.string_handling import extract_time
+from AkariRobot.modules.log_channel import loggable
 from telegram import (
     Bot, 
     Chat, 

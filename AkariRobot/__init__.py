@@ -23,11 +23,11 @@ from ptbcontrib.postgres_persistence import PostgresPersistence
 StartTime = time.time()
 
 def get_user_list(__init__, key):
-    with open("{}/ShikimoriRobot/{}".format(os.getcwd(), __init__), "r") as json_file:
+    with open("{}/AkariRobot/{}".format(os.getcwd(), __init__), "r") as json_file:
         return json.load(json_file)[key]
 
 # enable logging
-FORMAT = "[ShikimoriRobot] %(message)s"
+FORMAT = "[AkariRobot] %(message)s"
 logging.basicConfig(
     handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
     level=logging.INFO,
@@ -37,7 +37,7 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.INFO)
 logging.getLogger('ptbcontrib.postgres_persistence.postgrespersistence').setLevel(logging.WARNING)
 
-LOGGER = logging.getLogger('[ShikimoriRobot]')
+LOGGER = logging.getLogger('[AkariRobot]')
 LOGGER.info("Siesta is starting. | An Shiinobu Project Parts. | Licensed under GPLv3.")
 LOGGER.info("Not affiliated to other anime or Villain in any way whatsoever.")
 LOGGER.info("Project maintained by: github.com/shiinobu (t.me/saint_foire)")
@@ -137,7 +137,7 @@ if ENV:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
 
 else:
-    from ShikimoriRobot.config import Development as Config
+    from AkariRobot.config import Development as Config
 
     TOKEN = Config.TOKEN
 
@@ -251,7 +251,7 @@ else:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
 
-from ShikimoriRobot.modules.sql import SESSION
+from AkariRobot.modules.sql import SESSION
 
 defaults = tg.Defaults(run_async=True)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
@@ -315,7 +315,7 @@ DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
 
 # Load at end to ensure all prev variables have been set
-from ShikimoriRobot.modules.helper_funcs.handlers import (
+from AkariRobot.modules.helper_funcs.handlers import (
     CustomCommandHandler,
     CustomMessageHandler,
     CustomRegexHandler,

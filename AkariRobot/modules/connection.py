@@ -5,11 +5,11 @@ from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Upda
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CommandHandler, CallbackQueryHandler
 
-import ShikimoriRobot.modules.sql.connection_sql as sql
-from ShikimoriRobot import dispatcher, DRAGONS, DEV_USERS
-from ShikimoriRobot.modules.helper_funcs import chat_status
-from ShikimoriRobot.modules.helper_funcs.alternate import send_message, typing_action
-from ShikimoriRobot.modules.language import gs
+import AkariRobot.modules.sql.connection_sql as sql
+from AkariRobot import dispatcher, DRAGONS, DEV_USERS
+from AkariRobot.modules.helper_funcs import chat_status
+from AkariRobot.modules.helper_funcs.alternate import send_message, typing_action
+from AkariRobot.modules.language import gs
 
 user_admin = chat_status.user_admin
 

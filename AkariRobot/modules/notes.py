@@ -3,14 +3,14 @@ from io import BytesIO
 import random
 from typing import Optional
 
-import ShikimoriRobot.modules.sql.notes_sql as sql
-from ShikimoriRobot import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.handlers import MessageHandlerChecker
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin, connection_status
-from ShikimoriRobot.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from ShikimoriRobot.modules.helper_funcs.msg_types import get_note_type
-from ShikimoriRobot.modules.helper_funcs.string_handling import (
+import AkariRobot.modules.sql.notes_sql as sql
+from AkariRobot import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.handlers import MessageHandlerChecker
+from AkariRobot.modules.helper_funcs.chat_status import user_admin, connection_status
+from AkariRobot.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from AkariRobot.modules.helper_funcs.msg_types import get_note_type
+from AkariRobot.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
 )
 from telegram import (
@@ -30,7 +30,7 @@ from telegram.ext import (
     Filters,
     MessageHandler,
 )
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
 
 FILE_MATCHER = re.compile(r"^###file_id(!photo)?###:(.*?)(?:\s|$)")
 STICKER_MATCHER = re.compile(r"^###sticker(!photo)?###:")

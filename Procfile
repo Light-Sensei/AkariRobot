@@ -1,3 +1,3 @@
-worker: python3 -m ShikimoriRobot
-web: python3 -m ShikimoriRobot
+worker: python3 -m AkariRobot
+web: python3 -m AkariRobot
 ps:scale worker=1

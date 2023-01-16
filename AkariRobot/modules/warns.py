@@ -3,9 +3,9 @@ import re
 from typing import Optional
 
 import telegram
-from ShikimoriRobot import TIGERS, WOLVES, dispatcher
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot import TIGERS, WOLVES, dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.chat_status import (
     bot_admin,
     can_restrict,
     is_user_admin,
@@ -14,16 +14,16 @@ from ShikimoriRobot.modules.helper_funcs.chat_status import (
     user_admin_no_reply,
     can_delete,
 )
-from ShikimoriRobot.modules.helper_funcs.extraction import (
+from AkariRobot.modules.helper_funcs.extraction import (
     extract_text,
     extract_user,
     extract_user_and_text,
 )
-from ShikimoriRobot.modules.helper_funcs.filters import CustomFilters
-from ShikimoriRobot.modules.helper_funcs.misc import split_message
-from ShikimoriRobot.modules.helper_funcs.string_handling import split_quotes
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.sql import warns_sql as sql
+from AkariRobot.modules.helper_funcs.filters import CustomFilters
+from AkariRobot.modules.helper_funcs.misc import split_message
+from AkariRobot.modules.helper_funcs.string_handling import split_quotes
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.sql import warns_sql as sql
 from telegram import (
     CallbackQuery,
     Chat,
@@ -45,8 +45,8 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html
-from ShikimoriRobot.modules.sql.approve_sql import is_approved
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.sql.approve_sql import is_approved
+from AkariRobot.modules.language import gs
 
 WARN_HANDLER_GROUP = 9
 CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"

@@ -1,7 +1,7 @@
 from datetime import datetime
 from functools import wraps
 from telegram.ext import CallbackContext
-from ShikimoriRobot.modules.helper_funcs.misc import is_module_loaded
+from AkariRobot.modules.helper_funcs.misc import is_module_loaded
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
@@ -11,10 +11,10 @@ if is_module_loaded(FILENAME):
     from telegram.ext import CommandHandler, JobQueue, run_async
     from telegram.utils.helpers import escape_markdown
 
-    from ShikimoriRobot import EVENT_LOGS, LOGGER, dispatcher
-    from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin
-    from ShikimoriRobot.modules.sql import log_channel_sql as sql
-    from ShikimoriRobot.modules.language import gs
+    from AkariRobot import EVENT_LOGS, LOGGER, dispatcher
+    from AkariRobot.modules.helper_funcs.chat_status import user_admin
+    from AkariRobot.modules.sql import log_channel_sql as sql
+    from AkariRobot.modules.language import gs
 
     def loggable(func):
         @wraps(func)

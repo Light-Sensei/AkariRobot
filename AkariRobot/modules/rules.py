@@ -1,9 +1,9 @@
 from typing import Optional
 
-import ShikimoriRobot.modules.sql.rules_sql as sql
-from ShikimoriRobot import dispatcher
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin
-from ShikimoriRobot.modules.helper_funcs.string_handling import markdown_parser
+import AkariRobot.modules.sql.rules_sql as sql
+from AkariRobot import dispatcher
+from AkariRobot.modules.helper_funcs.chat_status import user_admin
+from AkariRobot.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,

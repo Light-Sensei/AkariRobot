@@ -1,12 +1,12 @@
 import html
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot import dispatcher, DRAGONS
-from ShikimoriRobot.modules.helper_funcs.extraction import extract_user
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot import dispatcher, DRAGONS
+from AkariRobot.modules.helper_funcs.extraction import extract_user
 from telegram.ext import CallbackContext, CallbackQueryHandler
-import ShikimoriRobot.modules.sql.approve_sql as sql
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.language import gs
+import AkariRobot.modules.sql.approve_sql as sql
+from AkariRobot.modules.helper_funcs.chat_status import user_admin
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.language import gs
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Update
 from telegram.utils.helpers import mention_html
 from telegram.error import BadRequest

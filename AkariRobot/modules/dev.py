@@ -5,10 +5,10 @@ import sys
 from contextlib import suppress
 from time import sleep
 
-import ShikimoriRobot
+import AkariRobot
 
-from ShikimoriRobot import dispatcher
-from ShikimoriRobot.modules.helper_funcs.chat_status import dev_plus
+from AkariRobot import dispatcher
+from AkariRobot.modules.helper_funcs.chat_status import dev_plus
 from telegram import TelegramError, Update
 from telegram.error import Unauthorized
 from telegram.ext import CallbackContext, CommandHandler
@@ -18,13 +18,13 @@ from telegram.ext import CallbackContext, CommandHandler
 def allow_groups(update: Update, context: CallbackContext):
     args = context.args
     if not args:
-        state = "Lockdown is " + "on" if not ShikimoriRobot.ALLOW_CHATS else "off"
+        state = "Lockdown is " + "on" if not AkariRobot.ALLOW_CHATS else "off"
         update.effective_message.reply_text(f"Current state: {state}")
         return
     if args[0].lower() in ["off", "no"]:
-        ShikimoriRobot.ALLOW_CHATS = True
+        AkariRobot.ALLOW_CHATS = True
     elif args[0].lower() in ["yes", "on"]:
-        ShikimoriRobot.ALLOW_CHATS = False
+        AkariRobot.ALLOW_CHATS = False
     else:
         update.effective_message.reply_text("Format: /lockdown Yes/No or Off/On")
         return

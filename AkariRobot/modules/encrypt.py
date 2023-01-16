@@ -1,6 +1,6 @@
-from ShikimoriRobot import telethn as tbot
+from AkariRobot import telethn as tbot
 import os
-from ShikimoriRobot.events import register
+from AkariRobot.events import register
 import secureme
 
 

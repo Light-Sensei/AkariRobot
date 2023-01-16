@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from ShikimoriRobot import LOGGER
-from ShikimoriRobot.modules.users import get_user_id
+from AkariRobot import LOGGER
+from AkariRobot.modules.users import get_user_id
 from telegram import Message, MessageEntity
 from telegram.error import BadRequest
 

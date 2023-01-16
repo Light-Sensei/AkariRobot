@@ -1,7 +1,7 @@
 import threading
 from sqlalchemy import Column, String, UnicodeText, Boolean, distinct, func, Integer
-from ShikimoriRobot.modules.helper_funcs.msg_types import Types
-from ShikimoriRobot.modules.sql import BASE, SESSION
+from AkariRobot.modules.helper_funcs.msg_types import Types
+from AkariRobot.modules.sql import BASE, SESSION
 
 
 class CustomFilters(BASE):

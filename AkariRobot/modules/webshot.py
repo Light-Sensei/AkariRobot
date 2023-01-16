@@ -20,8 +20,8 @@ SOFTWARE.
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ShikimoriRobot import pbot as app
-from ShikimoriRobot.utils.errors import capture_err
+from AkariRobot import pbot as app
+from AkariRobot.utils.errors import capture_err
 
 __mod_name__ = "Webshot​"
 

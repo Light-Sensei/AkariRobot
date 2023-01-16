@@ -2,8 +2,8 @@ import random
 import threading
 from typing import Union
 
-from ShikimoriRobot.modules.helper_funcs.msg_types import Types
-from ShikimoriRobot.modules.sql import BASE, SESSION
+from AkariRobot.modules.helper_funcs.msg_types import Types
+from AkariRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, String, UnicodeText, Integer
 from sqlalchemy.sql.sqltypes import BigInteger
 

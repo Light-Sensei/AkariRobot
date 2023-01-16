@@ -7,12 +7,12 @@ import time
 import re
 import sys
 import traceback
-import ShikimoriRobot.modules.sql.users_sql as sql
+import AkariRobot.modules.sql.users_sql as sql
 from sys import argv
 from typing import Optional
 from telegram import __version__ as peler
 from platform import python_version as memek
-from ShikimoriRobot import (
+from AkariRobot import (
     ALLOW_EXCL,
     CERT_PATH,
     DONATION_LINK,
@@ -33,9 +33,9 @@ from ShikimoriRobot import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-from ShikimoriRobot.modules import ALL_MODULES
-from ShikimoriRobot.modules.helper_funcs.chat_status import is_user_admin
-from ShikimoriRobot.modules.helper_funcs.misc import paginate_modules
+from AkariRobot.modules import ALL_MODULES
+from AkariRobot.modules.helper_funcs.chat_status import is_user_admin
+from AkariRobot.modules.helper_funcs.misc import paginate_modules
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import (
     BadRequest,
@@ -126,7 +126,7 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("ShikimoriRobot.modules." + module_name)
+    imported_module = importlib.import_module("AkariRobot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 

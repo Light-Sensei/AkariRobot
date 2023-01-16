@@ -5,8 +5,8 @@ from telethon import events
 from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler
 
-from ShikimoriRobot import telethn, dispatcher
-from ShikimoriRobot.modules.helper_funcs.chat_status import dev_plus
+from AkariRobot import telethn, dispatcher
+from AkariRobot.modules.helper_funcs.chat_status import dev_plus
 
 DEBUG_MODE = False
 

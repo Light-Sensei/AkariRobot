@@ -1,6 +1,6 @@
 import io
-from ShikimoriRobot.events import register
-from ShikimoriRobot import telethn as tbot
+from AkariRobot.events import register
+from AkariRobot import telethn as tbot
 from telethon import types
 from telethon import events
 from telethon.tl import functions

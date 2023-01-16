@@ -9,10 +9,10 @@ from telegram import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
 )
-from ShikimoriRobot import dispatcher, pbot
+from AkariRobot import dispatcher, pbot
 from pyrogram import filters
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.language import gs
 
 
 def helps(chat):

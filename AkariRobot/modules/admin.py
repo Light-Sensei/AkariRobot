@@ -5,9 +5,9 @@ from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
 
-from ShikimoriRobot import DRAGONS, dispatcher
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot import DRAGONS, dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.chat_status import (
     bot_admin,
     can_pin,
     can_promote,
@@ -16,14 +16,14 @@ from ShikimoriRobot.modules.helper_funcs.chat_status import (
     ADMIN_CACHE,
 )
 
-from ShikimoriRobot.modules.helper_funcs.admin_rights import user_can_changeinfo, user_can_promote
-from ShikimoriRobot.modules.helper_funcs.extraction import (
+from AkariRobot.modules.helper_funcs.admin_rights import user_can_changeinfo, user_can_promote
+from AkariRobot.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.helper_funcs.alternate import send_message
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.helper_funcs.alternate import send_message
+from AkariRobot.modules.language import gs
 
 
 @bot_admin

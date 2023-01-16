@@ -1,6 +1,6 @@
-from ShikimoriRobot import pbot as app
-from ShikimoriRobot.utils.errors import capture_err
-from ShikimoriRobot.ex_plugins.dbfunctions import get_couple, save_couple
+from AkariRobot import pbot as app
+from AkariRobot.utils.errors import capture_err
+from AkariRobot.ex_plugins.dbfunctions import get_couple, save_couple
 from pyrogram import filters
 import random
 from datetime import datetime

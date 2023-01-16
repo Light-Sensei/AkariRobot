@@ -1,4 +1,4 @@
-from ShikimoriRobot import LOAD, NO_LOAD, LOGGER
+from AkariRobot import LOAD, NO_LOAD, LOGGER
 import sys
 
 

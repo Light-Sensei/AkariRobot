@@ -2,13 +2,13 @@ import html
 import random
 import time
 
-import ShikimoriRobot.modules.fun_strings as fun_strings
-from ShikimoriRobot import dispatcher
-from ShikimoriRobot import DRAGONS
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.chat_status import is_user_admin
-from ShikimoriRobot.modules.helper_funcs.extraction import extract_user
-from ShikimoriRobot.modules.language import gs
+import AkariRobot.modules.fun_strings as fun_strings
+from AkariRobot import dispatcher
+from AkariRobot import DRAGONS
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.chat_status import is_user_admin
+from AkariRobot.modules.helper_funcs.extraction import extract_user
+from AkariRobot.modules.language import gs
 from telegram import ChatPermissions, ParseMode, Update
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext

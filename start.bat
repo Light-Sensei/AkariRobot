@@ -1,4 +1,4 @@
 @echo off
-TITLE ShikimoriRobot
+TITLE AkariRobot
 :: Enables virtual env mode and then starts Miku
-env\scripts\activate.bat && py -m ShikimoriRobot
+env\scripts\activate.bat && py -m AkariRobot

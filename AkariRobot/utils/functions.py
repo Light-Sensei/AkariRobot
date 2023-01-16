@@ -32,9 +32,9 @@ import speedtest
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from pyrogram.types import Message
 
-from ShikimoriRobot import aiohttpsession as aiosession
-from ShikimoriRobot.ex_plugins.dbfunctions import start_restart_stage
-from ShikimoriRobot.utils.http import get, post
+from AkariRobot import aiohttpsession as aiosession
+from AkariRobot.ex_plugins.dbfunctions import start_restart_stage
+from AkariRobot.utils.http import get, post
 
 
 async def restart(m: Message):

@@ -1,11 +1,11 @@
-from ShikimoriRobot import telethn as tbot
+from AkariRobot import telethn as tbot
 import os
 import re
 import bs4
 import requests
 from telethon import types
 from telethon.tl import functions
-from ShikimoriRobot.events import register
+from AkariRobot.events import register
 
 langi = "en"
 

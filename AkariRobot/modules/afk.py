@@ -1,12 +1,12 @@
 import random, html
 
-from ShikimoriRobot import dispatcher
-from ShikimoriRobot.modules.disable import (
+from AkariRobot import dispatcher
+from AkariRobot.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
 )
-from ShikimoriRobot.modules.sql import afk_sql as sql
-from ShikimoriRobot.modules.users import get_user_id
+from AkariRobot.modules.sql import afk_sql as sql
+from AkariRobot.modules.users import get_user_id
 from telegram import MessageEntity, Update
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, Filters, MessageHandler, run_async

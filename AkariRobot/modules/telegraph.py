@@ -1,5 +1,5 @@
-from ShikimoriRobot.events import register
-from ShikimoriRobot import telethn as tbot
+from AkariRobot.events import register
+from AkariRobot import telethn as tbot
 TMP_DOWNLOAD_DIRECTORY = "./"
 from telethon import events
 import os

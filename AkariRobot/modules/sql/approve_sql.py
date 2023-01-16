@@ -2,7 +2,7 @@ import threading
 from sqlalchemy import Column, String, UnicodeText, func, distinct
 from sqlalchemy.sql.sqltypes import BigInteger
 
-from ShikimoriRobot.modules.sql import BASE, SESSION
+from AkariRobot.modules.sql import BASE, SESSION
 
 class Approvals(BASE):
     __tablename__ = "approval"

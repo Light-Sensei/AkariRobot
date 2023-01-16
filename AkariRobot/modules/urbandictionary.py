@@ -1,6 +1,6 @@
 import requests
-from ShikimoriRobot import dispatcher
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot import dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, run_async
 

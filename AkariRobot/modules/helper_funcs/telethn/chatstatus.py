@@ -1,5 +1,5 @@
-from ShikimoriRobot.modules.helper_funcs.telethn import IMMUNE_USERS, telethn
-from ShikimoriRobot import DRAGONS
+from AkariRobot.modules.helper_funcs.telethn import IMMUNE_USERS, telethn
+from AkariRobot import DRAGONS
 from telethon.tl.types import ChannelParticipantsAdmins
 
 

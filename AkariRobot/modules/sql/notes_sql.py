@@ -1,8 +1,8 @@
 # Note: chat_id's are stored as strings because the int is too large to be stored in a PSQL database.
 import threading
 
-from ShikimoriRobot.modules.helper_funcs.msg_types import Types
-from ShikimoriRobot.modules.sql import BASE, SESSION
+from AkariRobot.modules.helper_funcs.msg_types import Types
+from AkariRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, String, UnicodeText, distinct, func, Integer
 
 

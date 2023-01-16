@@ -10,10 +10,10 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboardMarkup
 
-from ShikimoriRobot import DRAGONS as SUDO_USERS
-from ShikimoriRobot import pbot
-from ShikimoriRobot.modules.sql import forceSubscribe_sql as sql
-from ShikimoriRobot.modules.language import gs
+from AkariRobot import DRAGONS as SUDO_USERS
+from AkariRobot import pbot
+from AkariRobot.modules.sql import forceSubscribe_sql as sql
+from AkariRobot.modules.language import gs
 
 logging.basicConfig(level=logging.INFO)
 

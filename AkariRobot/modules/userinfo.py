@@ -17,9 +17,9 @@ from telegram.ext import CallbackContext, CommandHandler
 from telegram.ext.dispatcher import run_async
 from telegram.error import BadRequest
 from telegram.utils.helpers import escape_markdown, mention_html
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
     
-from ShikimoriRobot import (
+from AkariRobot import (
     DEV_USERS,
     OWNER_ID,
     DRAGONS,
@@ -32,16 +32,16 @@ from ShikimoriRobot import (
     StartTime,
     SUPPORT_CHAT,
 )
-from ShikimoriRobot.__main__ import STATS, TOKEN, USER_INFO
-from ShikimoriRobot.modules.sql import SESSION
-import ShikimoriRobot.modules.sql.userinfo_sql as sql
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.sql.global_bans_sql import is_user_gbanned
-from ShikimoriRobot.modules.sql.afk_sql import is_afk, set_afk
-from ShikimoriRobot.modules.sql.users_sql import get_user_num_chats
-from ShikimoriRobot.modules.helper_funcs.chat_status import sudo_plus
-from ShikimoriRobot.modules.helper_funcs.extraction import extract_user
-from ShikimoriRobot import telethn
+from AkariRobot.__main__ import STATS, TOKEN, USER_INFO
+from AkariRobot.modules.sql import SESSION
+import AkariRobot.modules.sql.userinfo_sql as sql
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.sql.global_bans_sql import is_user_gbanned
+from AkariRobot.modules.sql.afk_sql import is_afk, set_afk
+from AkariRobot.modules.sql.users_sql import get_user_num_chats
+from AkariRobot.modules.helper_funcs.chat_status import sudo_plus
+from AkariRobot.modules.helper_funcs.extraction import extract_user
+from AkariRobot import telethn
 
 SHIKIMORI_PIC = "https://telegra.ph/file/b4990dc110e4b1565f4a6.jpg"
 

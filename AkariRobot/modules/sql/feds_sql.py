@@ -1,7 +1,7 @@
 import ast
 import threading
-from ShikimoriRobot import dispatcher
-from ShikimoriRobot.modules.sql import BASE, SESSION
+from AkariRobot import dispatcher
+from AkariRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, String, UnicodeText, Integer, BigInteger
 from telegram.error import BadRequest, Unauthorized
 

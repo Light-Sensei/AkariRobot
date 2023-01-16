@@ -14,8 +14,8 @@ from telegram import(
 )
 from telegram.ext import CallbackContext
 
-from ShikimoriRobot import DEV_USERS, ERROR_LOGS, dispatcher
-from ShikimoriRobot.modules.helper_funcs.decorators import siestacmd
+from AkariRobot import DEV_USERS, ERROR_LOGS, dispatcher
+from AkariRobot.modules.helper_funcs.decorators import siestacmd
 
 pretty_errors.mono()
 

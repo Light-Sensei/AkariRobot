@@ -1,7 +1,7 @@
 import datetime
 import re
-from ShikimoriRobot import telethn as tbot
-from ShikimoriRobot.modules.helper_funcs.tools import post_to_telegraph
+from AkariRobot import telethn as tbot
+from AkariRobot.modules.helper_funcs.tools import post_to_telegraph
 from hentai import Hentai, Utils
 from natsort import natsorted
 import html
@@ -9,7 +9,7 @@ import textwrap
 client = tbot
 import asyncio
 import time
-from ShikimoriRobot.events import register
+from AkariRobot.events import register
 from telethon import Button
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 import os
@@ -18,14 +18,14 @@ import nekos
 import requests
 from PIL import Image
 from telegram import ParseMode
-from ShikimoriRobot import dispatcher, updater
-import ShikimoriRobot.modules.sql.nsfw_sql as sql
-from ShikimoriRobot.modules.log_channel import gloggable
+from AkariRobot import dispatcher, updater
+import AkariRobot.modules.sql.nsfw_sql as sql
+from AkariRobot.modules.log_channel import gloggable
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram.error import BadRequest, RetryAfter, Unauthorized
 from telegram.ext import CommandHandler, run_async, CallbackContext
-from ShikimoriRobot.modules.helper_funcs.filters import CustomFilters
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin
+from AkariRobot.modules.helper_funcs.filters import CustomFilters
+from AkariRobot.modules.helper_funcs.chat_status import user_admin
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 
 

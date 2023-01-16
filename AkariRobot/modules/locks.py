@@ -1,4 +1,4 @@
-import ShikimoriRobot.modules.sql.locks_sql as sql
+import AkariRobot.modules.sql.locks_sql as sql
 import html
 import ast
 
@@ -9,20 +9,20 @@ from telegram.ext import CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 from telegram.utils.helpers import mention_html
 from alphabet_detector import AlphabetDetector
-from ShikimoriRobot import dispatcher, DRAGONS, LOGGER
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot import dispatcher, DRAGONS, LOGGER
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.chat_status import (
     can_delete,
     is_user_admin,
     user_not_admin,
     is_bot_admin,
     user_admin,
 )
-from ShikimoriRobot.modules.sql.approve_sql import is_approved
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.connection import connected
-from ShikimoriRobot.modules.helper_funcs.alternate import send_message, typing_action
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.sql.approve_sql import is_approved
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.connection import connected
+from AkariRobot.modules.helper_funcs.alternate import send_message, typing_action
+from AkariRobot.modules.language import gs
 
 ad = AlphabetDetector()
 

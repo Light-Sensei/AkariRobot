@@ -13,9 +13,9 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html
 
-import ShikimoriRobot.modules.sql.global_bans_sql as sql
-from ShikimoriRobot.modules.sql.users_sql import get_user_com_chats
-from ShikimoriRobot import (
+import AkariRobot.modules.sql.global_bans_sql as sql
+from AkariRobot.modules.sql.users_sql import get_user_com_chats
+from AkariRobot import (
     DEV_USERS,
     EVENT_LOGS,
     OWNER_ID,
@@ -29,17 +29,17 @@ from ShikimoriRobot import (
     sw,
     dispatcher,
 )
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot.modules.helper_funcs.chat_status import (
     is_user_admin,
     support_plus,
     user_admin,
 )
-from ShikimoriRobot.modules.helper_funcs.extraction import (
+from AkariRobot.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from ShikimoriRobot.modules.helper_funcs.misc import send_to_list
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.helper_funcs.misc import send_to_list
+from AkariRobot.modules.language import gs
 
 GBAN_ENFORCE_GROUP = 6
 

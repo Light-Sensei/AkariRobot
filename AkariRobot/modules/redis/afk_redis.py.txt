@@ -1,4 +1,4 @@
-from ShikimoriRobot import REDIS
+from AkariRobot import REDIS
 
 
 # AFK

@@ -1,6 +1,6 @@
-from ShikimoriRobot  import dispatcher
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.alternate import typing_action
+from AkariRobot  import dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.alternate import typing_action
 from telegram import ParseMode
 from telegram.ext import run_async
 

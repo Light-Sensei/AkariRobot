@@ -7,8 +7,8 @@ import time
 import uuid
 from io import BytesIO
 
-import ShikimoriRobot.modules.sql.feds_sql as sql
-from ShikimoriRobot import (
+import AkariRobot.modules.sql.feds_sql as sql
+from AkariRobot import (
     EVENT_LOGS,
     LOGGER,
     SUPPORT_CHAT,
@@ -18,15 +18,15 @@ from ShikimoriRobot import (
     WOLVES,
     dispatcher,
 )
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.alternate import send_message
-from ShikimoriRobot.modules.helper_funcs.chat_status import is_user_admin
-from ShikimoriRobot.modules.helper_funcs.extraction import (
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.alternate import send_message
+from AkariRobot.modules.helper_funcs.chat_status import is_user_admin
+from AkariRobot.modules.helper_funcs.extraction import (
     extract_unt_fedban,
     extract_user,
     extract_user_fban,
 )
-from ShikimoriRobot.modules.helper_funcs.string_handling import markdown_parser
+from AkariRobot.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -42,7 +42,7 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html, mention_markdown
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
 
 # Hello bot owner, I spended for feds many hours of my life, Please don't remove this if you still respect MrYacha and peaktogoo and AyraHikari too
 # Federation by MrYacha 2018-2019

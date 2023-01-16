@@ -1,6 +1,6 @@
 import requests
-from ShikimoriRobot.events import register
-from ShikimoriRobot import telethn as tbot
+from AkariRobot.events import register
+from AkariRobot import telethn as tbot
 
 
 @register(pattern="^/ptl ?(.*)")
@@ -46,7 +46,7 @@ import urllib
 import asyncio
 import os
 from pyrogram import filters
-from ShikimoriRobot import TEMP_DOWNLOAD_DIRECTORY, pbot
+from AkariRobot import TEMP_DOWNLOAD_DIRECTORY, pbot
 
 
 @pbot.on_message(filters.command("boobs"))

@@ -2,7 +2,7 @@
 
 import aiohttp
 from pyrogram import filters
-from ShikimoriRobot import pbot as tomori
+from AkariRobot import pbot as tomori
 
 
 @tomori.on_message(filters.command("pokedex"))

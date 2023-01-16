@@ -1,9 +1,9 @@
 import html
 
-from ShikimoriRobot import LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.sql import reporting_sql as sql
+from AkariRobot import LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher
+from AkariRobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.sql import reporting_sql as sql
 from telegram import Chat, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
@@ -14,7 +14,7 @@ from telegram.ext import (
     MessageHandler,
 )
 from telegram.utils.helpers import mention_html
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
 
 REPORT_GROUP = 12
 REPORT_IMMUNE_USERS = DRAGONS + TIGERS + WOLVES

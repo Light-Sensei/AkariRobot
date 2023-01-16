@@ -1,5 +1,5 @@
 import threading
-from ShikimoriRobot.modules.sql import BASE, SESSION
+from AkariRobot.modules.sql import BASE, SESSION
 from sqlalchemy import Column, UnicodeText
 from sqlalchemy.sql.sqltypes import BigInteger
 

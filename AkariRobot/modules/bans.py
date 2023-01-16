@@ -14,10 +14,10 @@ from telegram.utils.helpers import mention_html
 from typing import Optional, List
 from telegram import TelegramError
 
-import ShikimoriRobot.modules.sql.users_sql as sql
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.filters import CustomFilters
-from ShikimoriRobot import (
+import AkariRobot.modules.sql.users_sql as sql
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.filters import CustomFilters
+from AkariRobot import (
     DEV_USERS,
     LOGGER,
     OWNER_ID,
@@ -27,7 +27,7 @@ from ShikimoriRobot import (
     WOLVES,
     dispatcher,
 )
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot.modules.helper_funcs.chat_status import (
     user_admin_no_reply,
     bot_admin,
     can_restrict,
@@ -40,10 +40,10 @@ from ShikimoriRobot.modules.helper_funcs.chat_status import (
     can_delete,
     dev_plus,
 )
-from ShikimoriRobot.modules.helper_funcs.extraction import extract_user_and_text
-from ShikimoriRobot.modules.helper_funcs.string_handling import extract_time
-from ShikimoriRobot.modules.log_channel import gloggable, loggable
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.helper_funcs.extraction import extract_user_and_text
+from AkariRobot.modules.helper_funcs.string_handling import extract_time
+from AkariRobot.modules.log_channel import gloggable, loggable
+from AkariRobot.modules.language import gs
 
 
 

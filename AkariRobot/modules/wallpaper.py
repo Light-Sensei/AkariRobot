@@ -1,8 +1,8 @@
 from random import randint
 
 import requests as r
-from ShikimoriRobot import SUPPORT_CHAT, WALL_API, dispatcher
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot import SUPPORT_CHAT, WALL_API, dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.ext import CallbackContext
 

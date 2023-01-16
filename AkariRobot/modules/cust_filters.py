@@ -13,24 +13,24 @@ from telegram.ext import (
     Filters,
 )
 from telegram.utils.helpers import mention_html, escape_markdown
-from ShikimoriRobot import dispatcher, LOGGER, DRAGONS
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.handlers import MessageHandlerChecker
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin
-from ShikimoriRobot.modules.helper_funcs.extraction import extract_text
-from ShikimoriRobot.modules.helper_funcs.filters import CustomFilters
-from ShikimoriRobot.modules.helper_funcs.misc import build_keyboard_parser
-from ShikimoriRobot.modules.helper_funcs.msg_types import get_filter_type
-from ShikimoriRobot.modules.helper_funcs.string_handling import (
+from AkariRobot import dispatcher, LOGGER, DRAGONS
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.handlers import MessageHandlerChecker
+from AkariRobot.modules.helper_funcs.chat_status import user_admin
+from AkariRobot.modules.helper_funcs.extraction import extract_text
+from AkariRobot.modules.helper_funcs.filters import CustomFilters
+from AkariRobot.modules.helper_funcs.misc import build_keyboard_parser
+from AkariRobot.modules.helper_funcs.msg_types import get_filter_type
+from AkariRobot.modules.helper_funcs.string_handling import (
     split_quotes,
     button_markdown_parser,
     escape_invalid_curly_brackets,
     markdown_to_html,
 )
-from ShikimoriRobot.modules.sql import cust_filters_sql as sql
-from ShikimoriRobot.modules.connection import connected
-from ShikimoriRobot.modules.helper_funcs.alternate import send_message, typing_action
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.sql import cust_filters_sql as sql
+from AkariRobot.modules.connection import connected
+from AkariRobot.modules.helper_funcs.alternate import send_message, typing_action
+from AkariRobot.modules.language import gs
 
 HANDLER_GROUP = 10
 

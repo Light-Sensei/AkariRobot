@@ -1,17 +1,17 @@
 import html
 from typing import Optional
 
-import ShikimoriRobot.modules.sql.blsticker_sql as sql
-from ShikimoriRobot import LOGGER, dispatcher
-from ShikimoriRobot.modules.connection import connected
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.alternate import send_message
-from ShikimoriRobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from ShikimoriRobot.modules.helper_funcs.misc import split_message
-from ShikimoriRobot.modules.helper_funcs.string_handling import extract_time
+import AkariRobot.modules.sql.blsticker_sql as sql
+from AkariRobot import LOGGER, dispatcher
+from AkariRobot.modules.connection import connected
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.alternate import send_message
+from AkariRobot.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from AkariRobot.modules.helper_funcs.misc import split_message
+from AkariRobot.modules.helper_funcs.string_handling import extract_time
 
-from ShikimoriRobot.modules.log_channel import loggable
-from ShikimoriRobot.modules.warns import warn
+from AkariRobot.modules.log_channel import loggable
+from AkariRobot.modules.warns import warn
 from telegram import Chat, Message, ParseMode, Update, User, ChatPermissions
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler

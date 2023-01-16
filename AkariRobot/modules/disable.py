@@ -2,9 +2,9 @@ import importlib
 from typing import Union
 
 from future.utils import string_types
-from ShikimoriRobot import dispatcher
-from ShikimoriRobot.modules.helper_funcs.handlers import CMD_STARTERS, SpamChecker
-from ShikimoriRobot.modules.helper_funcs.misc import is_module_loaded
+from AkariRobot import dispatcher
+from AkariRobot.modules.helper_funcs.handlers import CMD_STARTERS, SpamChecker
+from AkariRobot.modules.helper_funcs.misc import is_module_loaded
 from telegram import ParseMode, Update
 from telegram.ext import (
     CallbackContext,
@@ -14,7 +14,7 @@ from telegram.ext import (
     RegexHandler,
 )
 from telegram.utils.helpers import escape_markdown
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
 
 CMD_STARTERS = tuple(CMD_STARTERS)
 
@@ -23,12 +23,12 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 # If module is due to be loaded, then setup all the magical handlers
 if is_module_loaded(FILENAME):
 
-    from ShikimoriRobot.modules.helper_funcs.chat_status import (
+    from AkariRobot.modules.helper_funcs.chat_status import (
         connection_status,
         is_user_admin,
         user_admin,
     )
-    from ShikimoriRobot.modules.sql import disable_sql as sql
+    from AkariRobot.modules.sql import disable_sql as sql
 
     DISABLE_CMDS = []
     DISABLE_OTHER = []

@@ -2,8 +2,8 @@ import datetime
 from typing import List
 
 import requests
-from ShikimoriRobot import TIME_API_KEY, dispatcher
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot import TIME_API_KEY, dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext
 

@@ -1,6 +1,6 @@
 import ast
 
-from ShikimoriRobot import REDIS
+from AkariRobot import REDIS
 
 try:
     ast.literal_eval(REDIS.get("Approvals"))

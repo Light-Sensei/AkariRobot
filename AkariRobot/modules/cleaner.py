@@ -1,14 +1,14 @@
 import html
 
-from ShikimoriRobot import ALLOW_EXCL, CustomCommandHandler, dispatcher
-from ShikimoriRobot.modules.disable import DisableAbleCommandHandler
-from ShikimoriRobot.modules.helper_funcs.chat_status import (
+from AkariRobot import ALLOW_EXCL, CustomCommandHandler, dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.chat_status import (
     bot_can_delete,
     connection_status,
     dev_plus,
     user_admin,
 )
-from ShikimoriRobot.modules.sql import cleaner_sql as sql
+from AkariRobot.modules.sql import cleaner_sql as sql
 from telegram import ParseMode, Update
 from telegram.ext import (
     CallbackContext,
@@ -16,7 +16,7 @@ from telegram.ext import (
     Filters,
     MessageHandler,
 )
-from ShikimoriRobot.modules.language import gs
+from AkariRobot.modules.language import gs
 
 CMD_STARTERS = ("/", "!") if ALLOW_EXCL else "/"
 BLUE_TEXT_CLEAN_GROUP = 13

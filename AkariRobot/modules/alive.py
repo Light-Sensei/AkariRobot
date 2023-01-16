@@ -5,8 +5,8 @@ from telethon import events, Button
 from telegram import __version__ as telever
 from telethon import __version__ as tlhver
 from pyrogram import __version__ as pyrover
-from ShikimoriRobot.events import register
-from ShikimoriRobot import telethn as tbot
+from AkariRobot.events import register
+from AkariRobot import telethn as tbot
 
 
 PHOTO = "https://telegra.ph/file/bd9ce6e2c66833236248d.mp4"

@@ -1,4 +1,4 @@
-from ShikimoriRobot.modules.disable import (
+from AkariRobot.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
 )
@@ -9,7 +9,7 @@ from telegram.ext import (
     InlineQueryHandler,
 )
 from telegram.ext.filters import MessageFilter
-from ShikimoriRobot import dispatcher as d, LOGGER
+from AkariRobot import dispatcher as d, LOGGER
 from typing import Optional, Union, List
 
 
