@@ -43,7 +43,7 @@ from AkariRobot.modules.helper_funcs.chat_status import sudo_plus
 from AkariRobot.modules.helper_funcs.extraction import extract_user
 from AkariRobot import telethn
 
-AKARI_PIC = "https://telegra.ph/file/7ef542475e2b5962144d1.mp4"
+AKARI_PIC = "https://telegra.ph/file/3b48e1fb99a6dc4cbf018.jpg"
 
 def no_by_per(totalhp, percentage):
     """
