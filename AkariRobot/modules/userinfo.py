@@ -256,7 +256,7 @@ def info(update: Update, context: CallbackContext):
     else:
         return
 
-    rep = message.reply_text("<code>Matte Kudasai...</code>", parse_mode=ParseMode.HTML)
+    rep = message.reply_text("<code>Matte Matteee...</code>", parse_mode=ParseMode.HTML)
 
     text = (
         f"╔═━「<b> Appraisal results:</b> 」\n"
@@ -303,7 +303,7 @@ def info(update: Update, context: CallbackContext):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n\nThe Disaster level of this person is 'Darling'."
+        text += "\n\nThe Disaster level of this person is 'Hubby'."
         disaster_level_present = True
     elif user.id in DEV_USERS:
         text += "\n\nThis user is member of 'Onii-Chan'."
@@ -321,7 +321,7 @@ def info(update: Update, context: CallbackContext):
         text += "\n\nThe Disaster level of this person is 'Friend'."
         disaster_level_present = True
     elif user.id == 1492076351:
-         text += "\n\nOwner Of The Bot. Queen Of [Light Yagami♡ (夜神月♡)](http://t.me/Itz_Light_Yagami). Bot Name Inspired From 'Shikimori is not just a cutie'."
+         text += "\n\nOwner Of The Bot. Queen Of [Light Yagami♡ (夜神月♡)](http://t.me/Yagami_Kun)."
          disaster_level_present = True
 
     try:
@@ -357,9 +357,9 @@ def info(update: Update, context: CallbackContext):
                     [
                         [
                             InlineKeyboardButton(
-                                "Health", url="https://t.me/ShikimoriXupdates/11"),
+                                "Health", url="https://t.me/AkariWatanabeupdates/8"),
                             InlineKeyboardButton(
-                                "Disaster", url="https://t.me/ShikimoriXupdates/9")
+                                "Disaster", url="https://t.me/AkariWatanbeupdates/5")
                         ],
                     ]
                 ),
@@ -375,9 +375,9 @@ def info(update: Update, context: CallbackContext):
                     [
                         [
                             InlineKeyboardButton(
-                                "Health", url="https://t.me/ShikimoriXupdates/11"),
+                                "Health", url="https://t.me/AkariWatanabeupdates/8"),
                             InlineKeyboardButton(
-                                "Disaster", url="https://t.me/ShikimoriXupdates/9")
+                                "Disaster", url="https://t.me/AkariWatanabeupdates/5")
                         ],
                     ]
                 ),
@@ -473,15 +473,15 @@ def stats(update, context):
             status
             + "\n*Shikimori statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS])
-            + f"\n\n[♡ Support ♡](https://t.me/{SUPPORT_CHAT}) | [♡ Updates ♡](https://t.me/shikimoriXupdates)\n\n"
-            + "\n╘══「 by [Light Yagami (夜神月)](https://t.me/yagami_roito) 」\n",
+            + f"\n\n[♡ Support ♡](https://t.me/{SUPPORT_CHAT}) | [♡ Updates ♡](https://t.me/AkariWatanabeupdates)\n\n"
+            + "\n╘══「 by [Light Yagami (夜神月)](https://t.me/yagami_kun) 」\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
                   [                  
                        InlineKeyboardButton(
                              text="Powered By",
-                             url="https://t.me/shikimorinetworks")
+                             url="https://t.me/Quinx_Network")
                      ] 
                 ]
             ),
@@ -494,7 +494,7 @@ def stats(update, context):
                         "\n*Bot statistics*:\n"
                         + "\n".join(mod.__stats__() for mod in STATS)
                     )
-                    + f"\n\n[♡ Support ♡](https://t.me/{SUPPORT_CHAT}) | [♡ Updates ♡](https://t.me/shikimoriXupdates)\n\n"
+                    + f"\n\n[♡ Support ♡](https://t.me/{SUPPORT_CHAT}) | [♡ Updates ♡](https://t.me/AkariWatanabeupdates)\n\n"
                 )
                 + "╘══「 by [Light Yagami (夜神月)](https://t.me/yagami_kun) 」\n"
             ),
@@ -504,7 +504,7 @@ def stats(update, context):
                   [                  
                        InlineKeyboardButton(
                              text="Powered By",
-                             url="t.me/shikimorinetworks")
+                             url="t.me/Quinx_network")
                      ] 
                 ]
             ),
@@ -557,7 +557,7 @@ def set_about_bio(update: Update, context: CallbackContext):
 
         if user_id == bot.id and sender_id not in DEV_USERS:
             message.reply_text(
-                "Erm... yeah, I only trust the Ackermans to set my bio.",
+                "Erm... yeah, I only trust my Oniichan to set my bio.",
             )
             return
 
