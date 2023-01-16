@@ -43,7 +43,7 @@ from AkariRobot.modules.helper_funcs.chat_status import sudo_plus
 from AkariRobot.modules.helper_funcs.extraction import extract_user
 from AkariRobot import telethn
 
-AKARI_VID = "https://telegra.ph/file/7ef542475e2b5962144d1.mp4"
+AKARI_PIC = "https://telegra.ph/file/7ef542475e2b5962144d1.mp4"
 
 def no_by_per(totalhp, percentage):
     """
@@ -468,8 +468,8 @@ def stats(update, context):
     status += "*♡ python-Telegram-Bot:* " + str(ptbver) + "\n"
     status += "*♡ Uptime:* " + str(botuptime) + "\n"
     try:
-            update.effective_message.reply_animation(
-                AKARI_VID,
+            update.effective_message.reply_photo(
+                AKARI_PIC,
             status
             + "\n*Akari statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS])
