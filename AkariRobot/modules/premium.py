@@ -10,7 +10,7 @@ from AkariRobot import telethn as tbot
 
 
 
-@register(pattern=("/premium")
+@register(pattern=("/premium"))
 async def premium(event):
   TEXT = f"Yoooi [{event.sender.first_name}](tg://user?id={event.sender.id})-San \n\n"
   TEXT += "So You Want Premium Don't You\n\n"
