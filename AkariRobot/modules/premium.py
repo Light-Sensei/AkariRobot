@@ -8,7 +8,7 @@ from pyrogram import __version__ as pyrover
 from AkariRobot.events import register
 from AkariRobot import telethn as tbot
 
-
+PHOTO = "https://telegra.ph/file/7ef542475e2b5962144d1.mp4"
 
 @register(pattern=("/premium"))
 async def premium(event):
