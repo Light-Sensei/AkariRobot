@@ -259,21 +259,21 @@ def info(update: Update, context: CallbackContext):
     rep = message.reply_text("<code>Matte Matteee...</code>", parse_mode=ParseMode.HTML)
 
     text = (
-        f"╔═━「<b> Appraisal results:</b> 」\n"
-        f"♡ ID: <code>{user.id}</code>\n"
-        f"♡ First Name: {html.escape(user.first_name)}"
+        f"─────「<b> Your Information:</b> 」─────\n"
+        f"┗━ ID: <code>{user.id}</code>\n"
+        f"┗━ First Name: {html.escape(user.first_name)}"
     )
 
     if user.last_name:
-        text += f"\n♡ Last Name: {html.escape(user.last_name)}"
+        text += f"\n┗━ Last Name: {html.escape(user.last_name)}"
 
     if user.username:
-        text += f"\n♡ Username: @{html.escape(user.username)}"
+        text += f"\n┗━ Username: @{html.escape(user.username)}"
 
-    text += f"\n♡ Userlink: {mention_html(user.id, 'Sensei')}"
+    text += f"\n┗━ Userlink: {mention_html(user.id, 'Here')}"
 
     if chat.type != "private" and user_id != bot.id:
-        _stext = "\n♡ Presence: <code>{}</code>"
+        _stext = "\n┗━ Presence: <code>{}</code>"
 
         afk_st = is_afk(user.id)
         if afk_st:
@@ -289,7 +289,7 @@ def info(update: Update, context: CallbackContext):
                     text += _stext.format("Admin")
     if user_id not in [bot.id, 777000, 1087968824]:
         userhp = hpmanager(user)
-        text += f"\n\n<b>Health:</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]"
+        text += f"\n\n<b>─────「 Health: 」─────</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]"
 
     try:
         spamwtc = sw.get_ban(int(user.id))
@@ -318,7 +318,7 @@ def info(update: Update, context: CallbackContext):
         text += "\n\nThe Disaster level of this person is 'Best Friend'."
         disaster_level_present = True
     elif user.id in WOLVES:
-        text += "\n\nThe Disaster level of this person is 'Friend'."
+        text += "\n\nYoure A Premium User <3'."
         disaster_level_present = True
     elif user.id == 1492076351:
          text += "\n\nOwner Of The Bot. Queen Of [Light Yagami♡ (夜神月♡)](http://t.me/Yagami_Kun)."
@@ -451,27 +451,27 @@ def set_about_me(update: Update, context: CallbackContext):
 def stats(update, context):
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
     botuptime = get_readable_time((time.time() - StartTime))
-    status = "*╒═══「 System statistics 」*\n\n"
-    status += "*♡ System Start time:* " + str(uptime) + "\n"
+    status = "*──────「 System Stats 」──────*\n\n"
+    status += "*┗━ System Start time:* " + str(uptime) + "\n"
     uname = platform.uname()
-    status += "*♡ System:* " + str(uname.system) + "\n"
-    status += "*♡ Node name:* " + escape_markdown(str(uname.node)) + "\n"
-    status += "*♡ Release:* " + escape_markdown(str(uname.release)) + "\n"
-    status += "*♡ Machine:* " + escape_markdown(str(uname.machine)) + "\n"
+    status += "*┗━ System:* " + str(uname.system) + "\n"
+    status += "*┗━ Node name:* " + escape_markdown(str(uname.node)) + "\n"
+    status += "*┗━ Release:* " + escape_markdown(str(uname.release)) + "\n"
+    status += "*┗━ Machine:* " + escape_markdown(str(uname.machine)) + "\n"
     mem = virtual_memory()
     cpu = cpu_percent()
     disk = disk_usage("/")
-    status += "*♡ CPU:* " + str(cpu) + " %\n"
-    status += "*♡ RAM:* " + str(mem[2]) + " %\n"
-    status += "*♡ Storage:* " + str(disk[3]) + " %\n\n"
-    status += "*♡ Python Version:* " + python_version() + "\n"
-    status += "*♡ python-Telegram-Bot:* " + str(ptbver) + "\n"
-    status += "*♡ Uptime:* " + str(botuptime) + "\n"
+    status += "*┗━ CPU:* " + str(cpu) + " %\n"
+    status += "*┗━ RAM:* " + str(mem[2]) + " %\n"
+    status += "*┗━ Storage:* " + str(disk[3]) + " %\n\n"
+    status += "*┗━ Python Version:* " + python_version() + "\n"
+    status += "*┗━ python-Telegram-Bot:* " + str(ptbver) + "\n"
+    status += "*┗━ Uptime:* " + str(botuptime) + "\n"
     try:
             update.effective_message.reply_photo(
                 SHIKIMORI_PIC,
             status
-            + "\n*Akari statistics*:\n"
+            + "\n*──────「 Akari Stats 」──────*:\n"
             + "\n".join([mod.__stats__() for mod in STATS])
             + f"\n\n[♡ Support ♡](https://t.me/{SUPPORT_CHAT}) | [♡ Updates ♡](https://t.me/AkariWatanabeupdates)\n\n"
             + "\n╘══「 by [Light Yagami (夜神月)](https://t.me/yagami_kun) 」\n",
@@ -528,11 +528,11 @@ def about_bio(update: Update, context: CallbackContext):
     elif message.reply_to_message:
         username = user.first_name
         update.effective_message.reply_text(
-            f"{username} hasn't had a message set about themselves yet!\nSet one using /setbio",
+            f"{username} Dont even have a message to set about themselves!\nSet one using /setbio \nKay?",
         )
     else:
         update.effective_message.reply_text(
-            "You haven't had a bio set about yourself yet!",
+            "You dont even have a bio about yourself Lmao!",
         )
 
 
