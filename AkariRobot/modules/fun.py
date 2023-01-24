@@ -338,7 +338,7 @@ def gbam(update, context):
 
     if update.effective_message.chat.type == "private":
         return
-    if int(user.id) in DRAGONS or int(user.id) in DEMONS:
+    if int(user.id) in DRAGONS or int(user.id) in DEMONS or int(user.id) in WOLVES:
         gbamm = fun_strings.GBAM
         reason = random.choice(fun_strings.GBAM_REASON)
         gbam = gbamm.format(user1=user1, user2=user2, chatid=chat.id, reason=reason)
