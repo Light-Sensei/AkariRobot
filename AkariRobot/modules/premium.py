@@ -8,7 +8,7 @@ from pyrogram import __version__ as pyrover
 from AkariRobot.events import register
 from AkariRobot import telethn as tbot
 
-
+PHOTO = "https://telegra.ph/file/9adbb9a4ee2b8912e31bd.jpg"
 
 @register(pattern=("/premium"))
 async def premium(event):
@@ -24,4 +24,4 @@ async def premium(event):
   TEXT += "» 20 Groups = 1 Year Subscription\n"
   TEXT += "» 50 Groups = Life Time Subscription"
   BUTTON = [[Button.url("ᴀᴅᴅ ᴍᴇ", "t.me/AkariWatanabeXRoBot?startgroup=new"), Button.url("sᴜᴘᴘᴏʀᴛ", "https://t.me/shikimoriXsupport")]]
-  await tbot.send_file(event.chat_id, caption=TEXT,  buttons=BUTTON)
+  await tbot.send_file(event.chat_id, PHOTO, caption=TEXT,  buttons=BUTTON)
