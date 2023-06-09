@@ -4,10 +4,10 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import openai
 
 # Set up OpenAI API credentials
-openai.api_key = 'YOUR_OPENAI_API_KEY'
+openai.api_key = 'OPENAI_API_KEY'
 
 # Set up Telegram bot credentials
-TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
+TOKEN = 'TOKEN'
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
