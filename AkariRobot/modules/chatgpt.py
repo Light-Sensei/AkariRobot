@@ -2,12 +2,37 @@ import logging
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import openai
+import json
+import re
+import os
+import html
+import requests
+import AkariRobot.modules.sql.chatbot_sql as sql
+
+from time import sleep
+from telegram import ParseMode
+from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
+                      InlineKeyboardMarkup, Message, ParseMode, Update, Bot, User)
+from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
+                          DispatcherHandlerStop, Filters, MessageHandler,
+                          run_async)
+from telegram.error import BadRequest, RetryAfter, Unauthorized
+from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
+
+from AkariRobot.modules.helper_funcs.filters import CustomFilters
+from AkariRobot.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
+from AkariRobot import dispatcher, updater, SUPPORT_CHAT
+from AkariRobot.modules.log_channel import gloggable
+
+@run_async
+@user_admin_no_reply
+@gloggable
 
 # Set up OpenAI API credentials
-openai.api_key = 'OPENAI_API_KEY'
+openai.api_key = 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
 
 # Set up Telegram bot credentials
-TOKEN = 'TOKEN'
+TOKEN = 5641185391:AAH3YaOJWxfPDqu4m8bWRM-tnhhBEcQ0KoU
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
