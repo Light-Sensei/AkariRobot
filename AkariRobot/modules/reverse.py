@@ -17,10 +17,9 @@ class STRINGS:
     API_ERROR = '<b>L its an api error</b>:\n{}'
     SUPPORT_CHAT = '<b>Support Chat:</b> @shikimorisupport'
     REVERSE_RESULT = '''
+there you go babe protecc your waifu
 <b>Search Keyword:</b> <code>{}</code>
-<b>Results link:</b> <a href='{}'>Link</a>.
-
-<b>Credits:</b> @SastaDev
+<b>also if it didnt work try finding here:</b> <a href='{}'>Link</a>.
     '''
 
 COMMANDS = ['reverse', 'grs', 'pp',]
