@@ -2,34 +2,6 @@ import random
 from datetime import datetime, timedelta
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
-from telethon import TelegramClient, events
-from telethon.tl.types import MessageEntityMention
-import random
-
-# Your API credentials
-api_id = 'API_ID'
-api_hash = 'API_HASH'
-
-# Initialize the Telegram client
-client = TelegramClient('rpg_session', api_id, api_hash)
-
-# RPG game commands
-@client.on(events.NewMessage(pattern='/playrpg'))
-async def handle_playrpg(event):
-    # Check if the message was sent in a group
-    if event.is_group:
-        # Get the mentioned user ID
-        entities = event.message.entities
-        if entities and isinstance(entities[0], MessageEntityMention):
-            user_id = entities[0].user_id
-            # Start the RPG game logic
-            await event.reply(f'Starting RPG game with user press /choose {user_id}')
-            # Implement your RPG game logic here
-            # You can interact with the mentioned user using the user_id
-
-# Start the client
-client.start()
-client.run_until_disconnected()
 
 class Character:
     def __init__(self, name):
@@ -51,9 +23,11 @@ def level_up(character):
 
 # Command handlers...
 
+def playrpg(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text="wanna play rpg click /choose!")
 
-def helprpg(update, context):
-    helprpg_text = """
+def help(update, context):
+    help_text = """
     Available commands:
     /playrpg - Start the bot
     /choose - Choose a character
