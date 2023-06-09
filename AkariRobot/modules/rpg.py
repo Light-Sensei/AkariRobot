@@ -197,7 +197,7 @@ def main():
     dp = updater.dispatcher
 
     # Add command handlers
-    dp.add_handler(CommandHandler("playrpg", play_rpg))
+    dp.add_handler(CommandHandler("playrpg", playrpg))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("choose", choose))
     dp.add_handler(CommandHandler("create", create))
