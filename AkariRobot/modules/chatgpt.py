@@ -21,18 +21,12 @@ from telegram.utils.helpers import mention_html, mention_markdown, escape_markdo
 
 from AkariRobot.modules.helper_funcs.filters import CustomFilters
 from AkariRobot.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
-from AkariRobot import dispatcher, updater, SUPPORT_CHAT
+from AkariRobot import dispatcher, updater, SUPPORT_CHAT, TOKEN, OPEN_API_KEY
 from AkariRobot.modules.log_channel import gloggable
 
 @run_async
 @user_admin_no_reply
 @gloggable
-
-# Set up OpenAI API credentials
-openai.api_key = 'sk-3RHc1eCd9ujIeICqVnufT3BlbkFJJ65JldzvsB8Pn4XUrtd'
-
-# Set up Telegram bot credentials
-TOKEN = '5641185391:AAH3YaOJWxfPDqu4m8bWRM-tnhhBEcQ0KoU'
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
