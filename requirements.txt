@@ -21,6 +21,7 @@ zalgo-text
 geopy
 nltk
 psutil
+openai
 aiohttp
 Pillow
 CurrencyConverter
