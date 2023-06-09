@@ -29,10 +29,10 @@ from AkariRobot.modules.log_channel import gloggable
 @gloggable
 
 # Set up OpenAI API credentials
-openai.api_key = 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
+openai.api_key = 'sk-3RHc1eCd9ujIeICqVnufT3BlbkFJJ65JldzvsB8Pn4XUrtd'
 
 # Set up Telegram bot credentials
-TOKEN = 5641185391:AAH3YaOJWxfPDqu4m8bWRM-tnhhBEcQ0KoU
+TOKEN = '5641185391:AAH3YaOJWxfPDqu4m8bWRM-tnhhBEcQ0KoU'
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
