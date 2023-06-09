@@ -59,7 +59,7 @@ def main():
     weekly_handler = CommandHandler('weekly', weekly)
     balance_handler = CommandHandler('balance', balance)
 
-    dispatcher.add_handler(playrpg_handler
+    dispatcher.add_handler(playrpg_handler)
     dispatcher.add_handler(create_handler)
     dispatcher.add_handler(create_character_handler)
     dispatcher.add_handler(daily_handler)
