@@ -23,7 +23,7 @@ async def handle_playrpg(event):
         if entities and isinstance(entities[0], MessageEntityMention):
             user_id = entities[0].user_id
             # Start the RPG game logic
-            await event.reply(f'Starting RPG game with user press /create {user_id}')
+            await event.reply(f'Starting RPG game with user press /choose {user_id}')
             # Implement your RPG game logic here
             # You can interact with the mentioned user using the user_id
 
