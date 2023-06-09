@@ -53,8 +53,8 @@ def main():
     dispatcher = updater.dispatcher
 
     # Define the command handlers
-    start_handler = CommandHandler('start', start)
-    dispatcher.add_handler(start_handler)
+    chatgpt_handler = CommandHandler('chatgpt', chatgpt)
+    dispatcher.add_handler(chatgpt_handler)
 
     # Define the message handler
     message_handler = MessageHandler(Filters.text & ~Filters.command, message_handler)
@@ -64,5 +64,7 @@ def main():
     updater.start_polling()
     updater.idle()
 
-if __name__ == 'chatgpt.py':
-    chatgpt.py()
+__mod_name__ = "CHATGPT"
+__command_list__ = ["chatgpt"]
+__handlers__ = [
+  
