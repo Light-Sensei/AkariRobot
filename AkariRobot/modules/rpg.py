@@ -24,13 +24,13 @@ def level_up(character):
 
 # Command handlers...
 
-def start(update, context):
+def startrpg(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Welcome to the RPG Bot!")
 
 def help(update, context):
     help_text = """
     Available commands:
-    /start - Start the bot
+    /startrpg - Start the bot
     /choose - Choose a character
     /help - Show the help message
     /create - Create a character
