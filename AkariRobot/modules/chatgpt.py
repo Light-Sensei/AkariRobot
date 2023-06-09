@@ -66,5 +66,3 @@ def main():
 
 __mod_name__ = "CHATGPT"
 __command_list__ = ["chatgpt"]
-__handlers__ = [
-  
