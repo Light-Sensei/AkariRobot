@@ -1,7 +1,24 @@
+import datetime
+import html
+import json
+import textwrap
+import bs4
+import jikanpy
+import requests
 import random
-from datetime import datetime, timedelta
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+import os
+
+from bs4 import BeautifulSoup
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update, Message
+from telegram.ext import CommandHandler, CallbackQueryHandler, CallbackContext
+from telegram.utils.helpers import mention_html
+
+from AkariRobot import OWNER_ID, REDIS, dispatcher
+from AkariRobot.modules.disable import DisableAbleCommandHandler
+from AkariRobot.modules.helper_funcs.alternate import typing_action
+from AkariRobot.modules.helper_funcs.chat_status import callbacks_in_filters
 
 class Character:
     def __init__(self, name):
