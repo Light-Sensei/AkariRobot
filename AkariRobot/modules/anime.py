@@ -1256,7 +1256,6 @@ dispatcher.add_handler(PLAYRPG_HANDLER)
 dispatcher.add_handler(CREATE_HANDLER)
 dispatcher.add_handler(SELECT_GENDER_HANDLER)
 dispatcher.add_handler(SELECT_NAME_HANDLER)
-dispatcher.add_handler(NAME_CALLBACKS_HANDLER)
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(HAREM_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
@@ -1310,6 +1309,5 @@ __handlers__ = [
     CREATE_HANDLER,
     SELECT_GENDER_HANDLER,
     SELECT_NAME_HANDLER,
-    NAME_CALLBACKS_HANDLER,
     HAREM_HANDLER,
 ]
