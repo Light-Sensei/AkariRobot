@@ -40,8 +40,7 @@ def playrpg(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text=start_message, parse_mode=ParseMode.HTML)
     
 
-@typing_action
-@callbacks_in_filter
+
 def create(update: Update, context: CallbackContext):
     gender_keyboard = [
         [InlineKeyboardButton("Male", callback_data='male')],
