@@ -1120,7 +1120,7 @@ def playrpg(update: Update, context: CallbackContext):
     start_message = (
         f"hey {mention}! Welcome to the our virtual world.\n\n"
         "are you ready to face all the upcoming challenges?\n"
-        "if yes then choose /character to start playing."
+        "if yes then /create to start playing."
     )
     context.bot.send_message(chat_id=update.effective_chat.id, text=start_message, parse_mode=ParseMode.HTML)
     
@@ -1247,15 +1247,11 @@ QUOTE_CHANGE = CallbackQueryHandler(change_quote, pattern=r"quote_.*", run_async
 WAIFU_HANDLER = DisableAbleCommandHandler("waifu", waifu, run_async=True)
 PROTECC_HANDLER = DisableAbleCommandHandler("protecc", protecc, run_async=True)
 PLAYRPG_HANDLER = CommandHandler("playrpg", playrpg, run_async=True)
-CREATE_HANDLER = CallbackQueryHandler(create, pattern=r"select_gender", run_async=True)
-SELECT_GENDER_HANDLER = CallbackQueryHandler(select_gender, pattern=r"select_name", run_async=True)
-SELECT_NAME_HANDLER = CallbackQueryHandler(select_name, pattern=r"names_callback", run_async=True)
+CREATE_HANDLER = CommandHandler("create", create, run_async=True)
 
 
 dispatcher.add_handler(PLAYRPG_HANDLER)
 dispatcher.add_handler(CREATE_HANDLER)
-dispatcher.add_handler(SELECT_GENDER_HANDLER)
-dispatcher.add_handler(SELECT_NAME_HANDLER)
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(HAREM_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
