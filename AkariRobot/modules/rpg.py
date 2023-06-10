@@ -20,54 +20,122 @@ from AkariRobot.modules.disable import DisableAbleCommandHandler
 from AkariRobot.modules.helper_funcs.alternate import typing_action
 from AkariRobot.modules.helper_funcs.chat_status import callbacks_in_filters
 
+male_btn = "male"
+female_btn = "female"
+info_btn = "Profile Info 📕"
+prequel_btn = "⬅️ Prequel"
+sequel_btn = "Sequel ➡️"
+close_btn = "Close ❌"
 
 
-def playrpg(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Welcome to the RPG bot! Use /create to start playing.")
+def playrpg(update: Update, context: CallbackContext):
+    user = update.effective_user
+    mention = mention_html(user.id, user.first_name)
+    start_message = (
+        f"hey {mention}! Welcome to the our virtual world.\n\n"
+        "are you ready to face all the upcoming challenges?\n"
+        "if yes then choose /character to start playing."
+    )
+    context.bot.send_message(chat_id=update.effective_chat.id, text=start_message, parse_mode=ParseMode.HTML)
+    
 
-def create(update, context):
-    keyboard = [
+@typing_action
+@callbacks_in_filters
+def create(update: Update, context: CallbackContext):
+    gender_keyboard = [
         [InlineKeyboardButton("Male", callback_data='male')],
         [InlineKeyboardButton("Female", callback_data='female')]
     ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Choose your gender:", reply_markup=reply_markup)
+    reply_markup = InlineKeyboardMarkup(gender_keyboard)
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Ok, so what is your gender?", reply_markup=reply_markup)
 
-def create_character(update, context):
+# Callback handler for gender selection
+def select_gender(update: Update, context: CallbackContext):
     query = update.callback_query
     gender = query.data
     query.answer()
-    context.bot.send_message(chat_id=query.message.chat_id, text=f"You selected: {gender}")   
 
-def daily(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="You received your daily reward!")
+    if gender == 'male':
+        name_keyboard = [
+            [
+                InlineKeyboardButton("Jake", callback_data='Jake'),
+                InlineKeyboardButton("Zade", callback_data='Zade'),
+                InlineKeyboardButton("Josh", callback_data='Josh'),
+            ],
+            [
+                InlineKeyboardButton("Aaron", callback_data='Aaron'),
+                InlineKeyboardButton("Atlas", callback_data='Atlas'),
+                InlineKeyboardButton("Mike", callback_data='Mike'),
+            ]
+        ]
+        reply_markup = InlineKeyboardMarkup(name_keyboard)
+        query.message.reply_text("Alright, you're a male. Choose your name:", reply_markup=reply_markup)
+    elif gender == 'female':
+        name_keyboard = [
+            [
+                InlineKeyboardButton("Jane", callback_data='Jane'),
+                InlineKeyboardButton("Lily", callback_data='Lily'),
+                InlineKeyboardButton("Julliete", callback_data='Julliete')
+            ],
+            [
+                InlineKeyboardButton("Adeline", callback_data='Adeline'),
+                InlineKeyboardButton("Grace", callback_data='Grace'),
+                InlineKeyboardButton("Olivia", callback_data='Olivia'),
+            ]
+        ]
+        reply_markup = InlineKeyboardMarkup(name_keyboard)
+        query.message.reply_text("Alright, you're a female. Choose your name:", reply_markup=reply_markup)
 
-def weekly(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="You received your weekly reward!")
+# Callback handler for character name selection
+def select_name(update: Update, context: CallbackContext):
+    query = update.callback_query
+    name = query.data
+    query.answer()
+    query.message.edit_text(f"Okay, {name}! Let's enter this beautiful realm of magic.")
 
-def balance(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Your current balance is: $100")
+# Add callback handlers for each character name
+name_callbacks = [
+    CallbackQueryHandler(select_name, pattern='Jake'),
+    CallbackQueryHandler(select_name, pattern='Zade'),
+    CallbackQueryHandler(select_name, pattern='Josh'),
+    CallbackQueryHandler(select_name, pattern='Aaron'),
+    CallbackQueryHandler(select_name, pattern='Atlas'),
+    CallbackQueryHandler(select_name, pattern='Mike'),
+    CallbackQueryHandler(select_name, pattern='Jane'),
+    CallbackQueryHandler(select_name, pattern='Lily'),
+    CallbackQueryHandler(select_name, pattern='Julliete'),
+    CallbackQueryHandler(select_name, pattern='Adeline'),
+    CallbackQueryHandler(select_name, pattern='Grace'),
+    CallbackQueryHandler(select_name, pattern='Olivia'),
+]
+
 
 def main():
-    updater = Updater(token=TOKEN, use_context=True)
+    # Initialize the bot and add handlers
+    updater = Updater(token="YOUR_TELEGRAM_BOT_TOKEN", use_context=True)
     dispatcher = updater.dispatcher
 
+    # Add command handlers
     playrpg_handler = CommandHandler('playrpg', playrpg)
-    create_handler = CommandHandler('create', create)
-    create_character_handler = CallbackQueryHandler(create_character)
-    daily_handler = CommandHandler('daily', daily)
-    weekly_handler = CommandHandler('weekly', weekly)
-    balance_handler = CommandHandler('balance', balance)
-
     dispatcher.add_handler(playrpg_handler)
-    dispatcher.add_handler(create_handler)
-    dispatcher.add_handler(create_character_handler)
-    dispatcher.add_handler(daily_handler)
-    dispatcher.add_handler(weekly_handler)
-    dispatcher.add_handler(balance_handler)
 
+    create_handler = CommandHandler('character', create)
+    dispatcher.add_handler(create_handler)
+
+    # Add callback handlers
+    gender_callback_handler = CallbackQueryHandler(select_gender)
+    dispatcher.add_handler(gender_callback_handler)
+
+    for callback_handler in name_callbacks:
+        dispatcher.add_handler(callback_handler)
+
+    # Start the bot
     updater.start_polling()
     updater.idle()
 
+
 if __name__ == '__main__':
     main()
+
+
+
