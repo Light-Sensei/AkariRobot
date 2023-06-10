@@ -10,6 +10,7 @@ import os
 
 from bs4 import BeautifulSoup
 from pyrogram import filters
+from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update, Message
 from telegram.ext import CommandHandler, CallbackQueryHandler, CallbackContext
@@ -40,7 +41,7 @@ def playrpg(update: Update, context: CallbackContext):
     
 
 @typing_action
-@callbacks_in_filters
+@callbacks_in_filter
 def create(update: Update, context: CallbackContext):
     gender_keyboard = [
         [InlineKeyboardButton("Male", callback_data='male')],
