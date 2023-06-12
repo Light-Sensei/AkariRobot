@@ -127,15 +127,18 @@ WAIFUS_PIC = (
     "Yuno Gasai",
     "Anya",
     "Kaguya shinomiya",
+    "akari watanabe",
+    "sagiri",
+    "alpha",
+    "eris",
+    "iris",
+    "alexia",
     "Kanae kochou",
     "Yukinon",
     "Marin",
     "Siesta",
     "Asia",
     "Rias",
-    "Akari Watanabe",
-    "Mitsuri",
-    "Sagiri",
     "Gabi",
     "Mikasa",
     "Komi",
@@ -1111,88 +1114,6 @@ def fvrt_waifu(update, context):
             os.remove(loml)
     else:
         message.reply_text("You havn't added any waifu in your harem!")
-        
-        
-        
-def playrpg(update: Update, context: CallbackContext):
-    user = update.effective_user
-    mention = mention_html(user.id, user.first_name)
-    start_message = (
-        f"hey {mention}! Welcome to the our virtual world.\n\n"
-        "are you ready to face all the upcoming challenges?\n"
-        "if yes then /create to start playing."
-    )
-    context.bot.send_message(chat_id=update.effective_chat.id, text=start_message, parse_mode=ParseMode.HTML)
-    
-
-
-def create(update: Update, context: CallbackContext):
-    gender_keyboard = [
-        [InlineKeyboardButton("Male", callback_data='male')],
-        [InlineKeyboardButton("Female", callback_data='female')]
-    ]
-    reply_markup = InlineKeyboardMarkup(gender_keyboard)
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Ok, so what is your gender?", reply_markup=reply_markup)
-
-# Callback handler for gender selection
-def select_gender(update: Update, context: CallbackContext):
-    query = update.callback_query
-    gender = query.data
-    query.answer()
-
-    if gender == 'male':
-        name_keyboard = [
-            [
-                InlineKeyboardButton("Jake", callback_data='Jake'),
-                InlineKeyboardButton("Zade", callback_data='Zade'),
-                InlineKeyboardButton("Josh", callback_data='Josh'),
-            ],
-            [
-                InlineKeyboardButton("Aaron", callback_data='Aaron'),
-                InlineKeyboardButton("Atlas", callback_data='Atlas'),
-                InlineKeyboardButton("Mike", callback_data='Mike'),
-            ]
-        ]
-        reply_markup = InlineKeyboardMarkup(name_keyboard)
-        query.message.reply_text("Alright, you're a male. Choose your name:", reply_markup=reply_markup)
-    elif gender == 'female':
-        name_keyboard = [
-            [
-                InlineKeyboardButton("Jane", callback_data='Jane'),
-                InlineKeyboardButton("Lily", callback_data='Lily'),
-                InlineKeyboardButton("Julliete", callback_data='Julliete')
-            ],
-            [
-                InlineKeyboardButton("Adeline", callback_data='Adeline'),
-                InlineKeyboardButton("Grace", callback_data='Grace'),
-                InlineKeyboardButton("Olivia", callback_data='Olivia'),
-            ]
-        ]
-        reply_markup = InlineKeyboardMarkup(name_keyboard)
-        query.message.reply_text("Alright, you're a female. Choose your name:", reply_markup=reply_markup)
-
-# Callback handler for character name selection
-def select_name(update: Update, context: CallbackContext):
-    query = update.callback_query
-    name = query.data
-    query.answer()
-    query.message.edit_text(f"Okay, {name}! Let's enter this beautiful realm of magic.")
-
-# Add callback handlers for each character name
-name_callbacks = [
-    CallbackQueryHandler(select_name, pattern='Jake'),
-    CallbackQueryHandler(select_name, pattern='Zade'),
-    CallbackQueryHandler(select_name, pattern='Josh'),
-    CallbackQueryHandler(select_name, pattern='Aaron'),
-    CallbackQueryHandler(select_name, pattern='Atlas'),
-    CallbackQueryHandler(select_name, pattern='Mike'),
-    CallbackQueryHandler(select_name, pattern='Jane'),
-    CallbackQueryHandler(select_name, pattern='Lily'),
-    CallbackQueryHandler(select_name, pattern='Julliete'),
-    CallbackQueryHandler(select_name, pattern='Adeline'),
-    CallbackQueryHandler(select_name, pattern='Grace'),
-    CallbackQueryHandler(select_name, pattern='Olivia'),
-]
 
 __help__ = """
 × `/anime <anime>`*:* returns information about the anime from AniList.
@@ -1246,12 +1167,8 @@ CHANGE_QUOTE = CallbackQueryHandler(change_quote, pattern=r"change_.*", run_asyn
 QUOTE_CHANGE = CallbackQueryHandler(change_quote, pattern=r"quote_.*", run_async=True)
 WAIFU_HANDLER = DisableAbleCommandHandler("waifu", waifu, run_async=True)
 PROTECC_HANDLER = DisableAbleCommandHandler("protecc", protecc, run_async=True)
-PLAYRPG_HANDLER = CommandHandler("playrpg", playrpg, run_async=True)
-CREATE_HANDLER = CommandHandler("create", create, run_async=True)
 
 
-dispatcher.add_handler(PLAYRPG_HANDLER)
-dispatcher.add_handler(CREATE_HANDLER)
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(HAREM_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
@@ -1301,9 +1218,5 @@ __handlers__ = [
     ANIMEQUOTES_HANDLER,
     WAIFU_HANDLER,
     PROTECC_HANDLER,
-    PLAYRPG_HANDLER,
-    CREATE_HANDLER,
-    SELECT_GENDER_HANDLER,
-    SELECT_NAME_HANDLER,
     HAREM_HANDLER,
 ]
