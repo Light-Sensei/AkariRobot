@@ -104,4 +104,22 @@ name_callbacks = [
 ]
 
 
+PLAYRPG_HANDLER = CommandHandler("playrpg", playrpg, run_async=True)
+BUTTON_HANDLER = CommandHandler("create", create , run_async=True)
+SELECT_NAME_HANDLER = CommandHandler("select_name", select_name, run_async=True)
 
+
+dispatcher.add_handler(BUTTON_HANDLER)
+dispatcher.add_handler(PLAYRPG_HANDLER)
+dispatcher.add_handler(SELECT_NAME_HANDLER)
+
+__mod_name__ = "RPG"
+__command_list__ = [
+    "playrpg",
+    "create",
+]
+__handlers__ = [
+    BUTTON_HANDLER,
+    PLAYRPG_HANDLER,
+    SELECT_NAME_HANDLER,
+]
