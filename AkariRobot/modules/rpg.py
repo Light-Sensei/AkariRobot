@@ -21,12 +21,6 @@ from AkariRobot.modules.disable import DisableAbleCommandHandler
 from AkariRobot.modules.helper_funcs.alternate import typing_action
 from AkariRobot.modules.helper_funcs.chat_status import callbacks_in_filters
 
-male_btn = "male"
-female_btn = "female"
-info_btn = "Profile Info 📕"
-prequel_btn = "⬅️ Prequel"
-sequel_btn = "Sequel ➡️"
-close_btn = "Close ❌"
 
 
 def playrpg(update: Update, context: CallbackContext):
