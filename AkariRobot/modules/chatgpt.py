@@ -49,12 +49,6 @@ def errorgpt(update, context):
     logger.error('Update "%s" caused error "%s"', update, context.error)
     
     
- __help__ = """
-Chatgpt utilizes the Kuki's api which allows Kuki to talk and provide a more interactive group chat experience.
-*Admins only Commands*:
-  ➢ `/startgpt`*:* Shows chatbot control panel
-*Powered by ItelAi*
-"""
 
 __mod_name__ = "ChatBot"
 
