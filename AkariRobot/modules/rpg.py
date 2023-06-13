@@ -29,7 +29,7 @@ def playrpg(update: Update, context: CallbackContext):
     start_message = (
         f"hey {mention}! Welcome to the our virtual world.\n\n"
         "are you ready to face all the upcoming challenges?\n"
-        "if yes then choose /character to start playing."
+        "if yes then choose /create to start playing."
     )
     context.bot.send_message(chat_id=update.effective_chat.id, text=start_message, parse_mode=ParseMode.HTML)
     
@@ -104,14 +104,16 @@ name_callbacks = [
 ]
 
 
+
 PLAYRPG_HANDLER = CommandHandler("playrpg", playrpg, run_async=True)
-BUTTON_HANDLER = CommandHandler("create", create , run_async=True)
-SELECT_NAME_HANDLER = CommandHandler("select_name", select_name, run_async=True)
+BUTTON_HANDLER = CommandHandler("create", create, run_async=True)
 
 
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(PLAYRPG_HANDLER)
-dispatcher.add_handler(SELECT_NAME_HANDLER)
+
+for callback in name_callbacks:
+    dispatcher.add_handler(callback)
 
 __mod_name__ = "RPG"
 __command_list__ = [
@@ -121,5 +123,9 @@ __command_list__ = [
 __handlers__ = [
     BUTTON_HANDLER,
     PLAYRPG_HANDLER,
-    SELECT_NAME_HANDLER,
-]
+] + name_callbacks
+
+
+
+
+
