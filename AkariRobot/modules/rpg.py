@@ -112,7 +112,7 @@ BUTTON_HANDLER = CommandHandler("create", create, run_async=True)
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(PLAYRPG_HANDLER)
 
-for callback in name_callbacks:
+for callback in NAME_CALLBACKS:
     dispatcher.add_handler(NAME_CALLBACKS)
 
 __mod_name__ = "RPG"
