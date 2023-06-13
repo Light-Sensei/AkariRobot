@@ -113,7 +113,7 @@ dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(PLAYRPG_HANDLER)
 
 for callback in name_callbacks:
-    dispatcher.add_handler(callback)
+    dispatcher.add_handler(NAME_CALLBACK)
 
 __mod_name__ = "RPG"
 __command_list__ = [
@@ -123,7 +123,8 @@ __command_list__ = [
 __handlers__ = [
     BUTTON_HANDLER,
     PLAYRPG_HANDLER,
-] + name_callbacks
+    NAME_CALLBACKS,
+]
 
 
 
