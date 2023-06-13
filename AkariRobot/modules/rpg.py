@@ -123,8 +123,7 @@ __command_list__ = [
 __handlers__ = [
     BUTTON_HANDLER,
     PLAYRPG_HANDLER,
-    NAME_CALLBACKS,
-]
+] + NAME_CALLBACKS
 
 
 
