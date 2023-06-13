@@ -1,4 +1,4 @@
-FROM python:3.10.2-buster
+FROM python:3.12.0b1-buster
 
 WORKDIR /root/KURUMIBOT
 
