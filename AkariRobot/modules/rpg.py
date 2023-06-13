@@ -88,7 +88,7 @@ def select_name(update: Update, context: CallbackContext):
     query.message.edit_text(f"Okay, {name}! Let's enter this beautiful realm of magic.")
 
 # Add callback handlers for each character name
-NAME_CALLBACKS = [
+name_callbacks = [
     CallbackQueryHandler(select_name, pattern='Jake'),
     CallbackQueryHandler(select_name, pattern='Zade'),
     CallbackQueryHandler(select_name, pattern='Josh'),
@@ -112,8 +112,8 @@ BUTTON_HANDLER = CommandHandler("create", create, run_async=True)
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(PLAYRPG_HANDLER)
 
-for callback in NAME_CALLBACKS:
-    dispatcher.add_handler(NAME_CALLBACKS)
+for callback in name_callbacks:
+    dispatcher.add_handler(callback)
 
 __mod_name__ = "RPG"
 __command_list__ = [
@@ -123,8 +123,7 @@ __command_list__ = [
 __handlers__ = [
     BUTTON_HANDLER,
     PLAYRPG_HANDLER,
-] + NAME_CALLBACKS
-
+] + name_callbacks
 
 
 
