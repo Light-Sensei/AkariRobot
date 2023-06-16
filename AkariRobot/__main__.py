@@ -82,14 +82,14 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
- ────「 ᴀᴋᴀʀɪ ᴡᴀᴛᴀɴᴀʙᴇ 」────
-  [やあ]({}) Kon'ichiwa {} - San!   
-  I'm Akari Watanabe An Kawaii Advanced Group Management Robot 
+ ─────「 ᴀᴋᴀʀɪ ᴡᴀᴛᴀɴᴀʙᴇ 」─────
+  [やあ]({}) kon'ichiwa {} - san!   
+  i'm Watanabe Akari Illmanage your group to the fullest 
 ───────────────────────
-  ♡  Server Uptime :- `{}`         
-  ♡  `{}` Users, Across `{}` Chats.
+  ♡  online since :- `{}`         
+  ♡  `{}` users, across `{}` chats.
 ───────────────────────
-  ♡ Try The More Button To Know More ♡
+  ♡ click the more button for advancements ♡
 """
 
 PHOTO = (
@@ -865,14 +865,14 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}", 
-                f"""**[Konnichiwa Minna Am Alive Now](https://telegra.ph/file/f5ac4d132937010e8df2d.jpg)**""",
+                f"""**[Online Again](https://telegra.ph/file/f5ac4d132937010e8df2d.jpg)**""",
 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
                                 "ᴀᴅᴅ ᴍᴇ", url="t.me/AkariWatanabeXRoBot?startgroup=new"),
                             InlineKeyboardButton(
-                                "ᴜᴘᴅᴀᴛᴇs", url="https://t.me/SHIKIMORIXSUPPORT")
+                                "ᴜᴘᴅᴀᴛᴇs", url="https://t.me/quinxsupport")
                         ],
                     ]
                 ),
