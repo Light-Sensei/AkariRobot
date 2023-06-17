@@ -209,7 +209,7 @@ __handlers__ = [
     weekly_handler,
     balance_handler,
     build_handler,
-    inventory_handler
+    inventory_handler,
     playrpg_handler,
     hunt_handler,
     gender_callback_handler,
