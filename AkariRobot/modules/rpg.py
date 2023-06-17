@@ -104,15 +104,35 @@ name_callbacks = [
 ]
 
 
-# Command handler for /daily
 def daily(update: Update, context: CallbackContext):
-    # Generate a random reward for the daily command
-    rewards = ["100 gold coins", "a health potion", "a magic scroll"]
-    reward = random.choice(rewards)
-    
-    # Send the reward to the user
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received {reward} as your daily reward!")
+    user_id = str(update.effective_user.id)
 
+    # Retrieve the user's data from the database
+    data = collection.find_one({'_id': user_id})
+    if data:
+        balance = data.get('balance')
+        new_balance = balance + 10  # Daily bonus of 10 gold coins
+        collection.update_one({'_id': user_id}, {'$set': {'balance': new_balance}})
+
+        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You earned 10 gold coins. Your balance: {new_balance}")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You are not registered. Use /create to create a character.")
+
+
+def balance(update: Update, context: CallbackContext):
+    user_id = str(update.effective_user.id)
+
+    # Retrieve the user's balance from the database
+    data = collection.find_one({'_id': user_id})
+    if data:
+        balance = data.get('balance')
+        context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your balance: {balance} gold coins")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You are not registered. Use /create to create a character.")
+
+    
+    # Send the user's balance to the chat
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your balance: {balance} gold coins")
 # Command handler for /weekly
 def weekly(update: Update, context: CallbackContext):
     # Generate a random reward for the weekly command
@@ -122,13 +142,7 @@ def weekly(update: Update, context: CallbackContext):
     # Send the reward to the user
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received {reward} as your weekly reward!")
 
-# Command handler for /bal
-def balance(update: Update, context: CallbackContext):
-    # Get the user's balance from the database or any other storage
-    balance = 100  # Replace with the actual balance retrieval code
-    
-    # Send the user's balance to the chat
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your balance: {balance} gold coins")
+
 
 # Command handler for /inv
 def inventory(update: Update, context: CallbackContext):
