@@ -154,84 +154,137 @@ def balance(update: Update, context: CallbackContext):
 
 
 
-# Command handler for /weekly
+# Function to get the player's data from the database
+def get_player_data(user_id):
+    player_data = collection.find_one({'user_id': user_id})
+    if not player_data:
+        player_data = {'user_id': user_id, 'balance': 0, 'inventory': [], 'bank_balance': 0}
+        collection.insert_one(player_data)
+    return player_data
+
+# Function to update the player's data in the database
+def update_player_data(user_id, player_data):
+    collection.update_one({'user_id': user_id}, {'$set': player_data})
+
+# Function to handle the /weekly command
 def weekly(update: Update, context: CallbackContext):
-    # Generate a random reward for the weekly command
-    rewards = ["500 gold coins", "lucky item tap /spin to see", "a treasure map"]
-    reward = random.choice(rewards)
-    
-    # Send the reward to the user
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received {reward} as your weekly reward!")
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    new_balance = balance + 100  # Increment balance by 100 for weekly reward
+    player_data['balance'] = new_balance
+    update_player_data(user_id, player_data)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received a weekly reward of 100 coins. Your balance is now {new_balance} coins.")
 
-
-
-# Command handler for /inv
+# Function to handle the /inv command
 def inventory(update: Update, context: CallbackContext):
-    # Get the user's inventory from the database or any other storage
-    items = ["Sword", "Shield", "Health Potion"]  # Replace with the actual inventory retrieval code
-    
-    # Format the items into a list
-    items_list = "\n".join(items)
-    
-    # Send the user's inventory to the chat
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your inventory:\n{items_list}")
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    inventory_items = player_data['inventory']
+    inventory_text = f"Your inventory:\nBalance: {balance} coins\nItems: {', '.join(inventory_items)}"
+    context.bot.send_message(chat_id=update.effective_chat.id, text=inventory_text)
 
-# Command handler for /hunt
+# Function to handle the /hunt command
 def hunt(update: Update, context: CallbackContext):
-    # Generate a random number to simulate the success of hunting
-    success = random.randint(0, 1)
-    
-    if success:
-        # User successfully hunted an animal
-        animal = random.choice(["rabbit", "deer", "wolf"])
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You hunted a {animal}!")
-    else:
-        # User failed to hunt an animal and got injured
-        context.bot.send_message(chat_id=update.effective_chat.id, text="While hunting, you got injured. Try again later.")
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    earnings = random.randint(1, 10)  # Random earnings between 1 and 10
+    new_balance = balance + earnings
+    player_data['balance'] = new_balance
+    update_player_data(user_id, player_data)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You went hunting and earned {earnings} coins. Your balance is now {new_balance} coins.")
 
-# Command handler for /build
+# Function to handle the /build command
 def build(update: Update, context: CallbackContext):
-    # Generate a random number to simulate the success of building
-    success = random.randint(0, 1)
-    
-    if success:
-        # User successfully built something
-        context.bot.send_message(chat_id=update.effective_chat.id, text="You successfully built a house!")
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    cost = 50  # Cost to build
+    if balance >= cost:
+        new_balance = balance - cost
+        player_data['balance'] = new_balance
+        # Add the built item to the inventory
+        built_item = "Sword"  # Replace with the item you want to build
+        player_data['inventory'].append(built_item)
+        update_player_data(user_id, player_data)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You built a {built_item} for {cost} coins. Your balance is now {new_balance} coins.")
     else:
-        # User failed to build something
-        context.bot.send_message(chat_id=update.effective_chat.id, text="Building construction failed. Try again later.")
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have enough coins to build.")
 
-# Define command handlers
+# Function to handle the /bank command
+def bank(update: Update, context: CallbackContext):
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    bank_balance = player_data['bank_balance']
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Bank balance: {bank_balance} coins\nAvailable balance: {balance} coins")
+
+# Function to handle the /deposit command
+def deposit(update: Update, context: CallbackContext):
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    bank_balance = player_data['bank_balance']
+    deposit_amount = balance
+    player_data['balance'] = 0
+    player_data['bank_balance'] = bank_balance + deposit_amount
+    update_player_data(user_id, player_data)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You deposited {deposit_amount} coins to your bank.")
+
+# Function to handle the /withdraw command
+def withdraw(update: Update, context: CallbackContext):
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    bank_balance = player_data['bank_balance']
+    withdraw_amount = bank_balance
+    player_data['balance'] = balance + withdraw_amount
+    player_data['bank_balance'] = 0
+    update_player_data(user_id, player_data)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You withdrew {withdraw_amount} coins from your bank.")
 
 
-# Add handlers to the dispatcher
+
+# Add the command handlers to the dispatcher
+
 
 
 
 
 playrpg_handler = CommandHandler("playrpg", playrpg, run_async=True)
 create_handler = CommandHandler("create", create, run_async=True)
-daily_handler = CommandHandler("daily", daily, run_async=True)
 weekly_handler = CommandHandler("weekly", weekly, run_async=True)
-balance_handler = CommandHandler("bal", balance, run_async=True)
 inventory_handler = CommandHandler("inv", inventory, run_async=True)
 hunt_handler = CommandHandler("hunt", hunt, run_async=True)
 build_handler = CommandHandler("build", build, run_async=True)
+bank_handler = CommandHandler("bank", bank, run_async=True)
+deposit_handler = CommandHandler("deposit", deposit, run_async=True)
+withdraw_handler = CommandHandler("withdraw", withdraw, run_async=True)
+daily_handler = CommandHandler("daily", daily, run_async=True)
+balance_handler = CommandHandler("bal", balance, run_async=True)
+
 
 gender_callback_handler = CallbackQueryHandler(select_gender, pattern='^(male|female)$', run_async=True)
 name_callback_handler = CallbackQueryHandler(select_name, pattern='^(Jake|Zade|Josh|Aaron|Atlas|Mike|Jane|Lily|Julliete|Adeline|Grace|Olivia)$', run_async=True)
 
-# Add handlers to the dispatcher
+
+
+dispatcher.add_handler(weekly_handler)
+dispatcher.add_handler(inventory_handler)
+dispatcher.add_handler(hunt_handler)
+dispatcher.add_handler(build_handler)
+dispatcher.add_handler(bank_handler)
+dispatcher.add_handler(deposit_handler)
+dispatcher.add_handler(withdraw_handler)
 dispatcher.add_handler(playrpg_handler)
 dispatcher.add_handler(create_handler)
 dispatcher.add_handler(gender_callback_handler)
 dispatcher.add_handler(name_callback_handler)
 dispatcher.add_handler(daily_handler)
-dispatcher.add_handler(weekly_handler)
 dispatcher.add_handler(balance_handler)
-dispatcher.add_handler(inventory_handler)
-dispatcher.add_handler(hunt_handler)
-dispatcher.add_handler(build_handler)
+
 
 __mod_name__ = "RPG"
 __command_list__ = [
@@ -243,6 +296,9 @@ __handlers__ = [
     daily_handler,
     weekly_handler,
     balance_handler,
+    withdraw_handler,
+    deposit_handler,
+    bank_handler,
     build_handler,
     inventory_handler,
     playrpg_handler,
