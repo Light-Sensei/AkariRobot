@@ -214,7 +214,7 @@ name_callbacks = [
 
 
 playrpg_handler = CommandHandler("playrpg", playrpg, run_async=True)
-button_handler = CommandHandler("create", create, run_async=True)
+create_handler = CommandHandler("create", create, run_async=True)
 
 
 gender_callback_handler = CallbackQueryHandler(select_gender, pattern='^(male|female)$', run_async=True)
@@ -222,7 +222,7 @@ name_callback_handler = CallbackQueryHandler(select_name, pattern='^(Jake|Zade|J
 
 # Add handlers to the dispatcher
 dispatcher.add_handler(playrpg_handler)
-dispatcher.add_handler(button_handler)
+dispatcher.add_handler(create_handler)
 dispatcher.add_handler(gender_callback_handler)
 dispatcher.add_handler(name_callback_handler)
 
@@ -233,30 +233,13 @@ __command_list__ = [
     "create",
 ]
 __handlers__ = [
-    button_handler,
+    create_handler,
     playrpg_handler,
     gender_callback_handler,
     name_callback_handler,
 ] 
 
 
-
-
-dispatcher.add_handler(BUTTON_HANDLER)
-dispatcher.add_handler(PLAYRPG_HANDLER)
-
-for callback in name_callbacks:
-    dispatcher.add_handler(callback)
-
-__mod_name__ = "RPG"
-__command_list__ = [
-    "playrpg",
-    "create",
-]
-__handlers__ = [
-    BUTTON_HANDLER,
-    PLAYRPG_HANDLER,
-] + name_callbacks
 
 
 
