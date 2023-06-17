@@ -213,41 +213,46 @@ def build(update: Update, context: CallbackContext):
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have enough coins to build.")
 
-# Function to handle the /bank command
-def bank(update: Update, context: CallbackContext):
-    user_id = update.effective_user.id
-    player_data = get_player_data(user_id)
-    balance = player_data['balance']
-    bank_balance = player_data['bank_balance']
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Bank balance: {bank_balance} coins\nAvailable balance: {balance} coins")
-
-# Function to handle the /deposit command
 def deposit(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
-    balance = player_data['balance']
-    bank_balance = player_data['bank_balance']
-    deposit_amount = balance
-    player_data['balance'] = 0
-    player_data['bank_balance'] = bank_balance + deposit_amount
-    update_player_data(user_id, player_data)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You deposited {deposit_amount} coins to your bank.")
+
+    if player_data['balance'] > 0:
+        player_data['bank_balance'] += player_data['balance']
+        player_data['balance'] = 0
+
+        # Update the player data in the database
+        update_player_data(user_id, player_data)
+
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have deposited all your coins to the bank.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have any coins to deposit.")
 
 # Function to handle the /withdraw command
 def withdraw(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
-    balance = player_data['balance']
+
+    if player_data['bank_balance'] > 0:
+        player_data['balance'] += player_data['bank_balance']
+        player_data['bank_balance'] = 0
+
+        # Update the player data in the database
+        update_player_data(user_id, player_data)
+
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have withdrawn all your coins from the bank.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Your bank balance is empty.")
+
+# Function to handle the /bank command
+def bank(update: Update, context: CallbackContext):
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+
     bank_balance = player_data['bank_balance']
-    withdraw_amount = bank_balance
-    player_data['balance'] = balance + withdraw_amount
-    player_data['bank_balance'] = 0
-    update_player_data(user_id, player_data)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You withdrew {withdraw_amount} coins from your bank.")
+    balance = player_data['balance']
 
-
-
-# Add the command handlers to the dispatcher
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Bank balance: {bank_balance} coins\nWallet balance: {balance} coins")
 
 
 
