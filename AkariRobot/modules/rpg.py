@@ -178,7 +178,7 @@ def weekly(update: Update, context: CallbackContext):
     player_data['balance'] = new_balance
     player_data['last_weekly'] = datetime.now()
     update_player_data(user_id, player_data)
-    context.bot.send_message(chatid=update.effective_chat.id, text=f"you received weekly reward of 100 coins. your balence now is {new_balance} coins."
+    context.bot.send_message(chatid=update.effective_chat.id, text=f"you received weekly reward of 100 coins. your balence now is {new_balance} coins")
 
 # Function to handle the /inv command
 def inventory(update: Update, context: CallbackContext):
