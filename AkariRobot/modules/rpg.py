@@ -10,7 +10,7 @@ import os
 
 from bs4 import BeautifulSoup
 from pyrogram import filters
-from pyrogram import filters
+from pymongo import MongoClient
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update, Message
 from telegram.ext import CommandHandler, CallbackQueryHandler, CallbackContext
@@ -23,19 +23,43 @@ from AkariRobot.modules.helper_funcs.chat_status import callbacks_in_filters
 
 
 
+MONGO_DB_URI = os.getenv("MONGO_DB_URI")
+if not MONGO_DB_URI:
+    raise ValueError("MongoDB URI is not set")
+
+# Connect to MongoDB server
+client = MongoClient(MONGO_DB_URI)
+
+# Select the database and collection
+db = client['your_database']
+collection = db['your_collection']
+
+
 def playrpg(update: Update, context: CallbackContext):
-    user = update.effective_user
-    mention = mention_html(user.id, user.first_name)
+    user_id = str(update.effective_user.id)
+
+    # Check if the user is already registered
+    if collection.count_documents({'_id': user_id}) > 0:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You are already playing the RPG!")
+        return
+
+    mention = mention_html(user_id, update.effective_user.first_name)
     start_message = (
-        f"hey {mention}! Welcome to the our virtual world.\n\n"
-        "are you ready to face all the upcoming challenges?\n"
-        "if yes then choose /create to start playing."
+        f"Hey {mention}! Welcome to our virtual world.\n\n"
+        "Are you ready to face all the upcoming challenges?\n"
+        "If yes, choose /create to start playing."
     )
     context.bot.send_message(chat_id=update.effective_chat.id, text=start_message, parse_mode=ParseMode.HTML)
-    
 
 
 def create(update: Update, context: CallbackContext):
+    user_id = str(update.effective_user.id)
+
+    # Check if the user is already registered
+    if collection.count_documents({'_id': user_id}) > 0:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have already created a character!")
+        return
+
     gender_keyboard = [
         [InlineKeyboardButton("Male", callback_data='male')],
         [InlineKeyboardButton("Female", callback_data='female')]
@@ -43,9 +67,11 @@ def create(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(gender_keyboard)
     context.bot.send_message(chat_id=update.effective_chat.id, text="Ok, so what is your gender?", reply_markup=reply_markup)
 
+
 # Callback handler for gender selection
 def select_gender(update: Update, context: CallbackContext):
     query = update.callback_query
+    user_id = str(query.from_user.id)
     gender = query.data
     query.answer()
 
@@ -80,28 +106,23 @@ def select_gender(update: Update, context: CallbackContext):
         reply_markup = InlineKeyboardMarkup(name_keyboard)
         query.message.reply_text("Alright, you're a female. Choose your name:", reply_markup=reply_markup)
 
+
 # Callback handler for character name selection
 def select_name(update: Update, context: CallbackContext):
     query = update.callback_query
+    user_id = str(query.from_user.id)
     name = query.data
     query.answer()
-    query.message.edit_text(f"Okay, {name}! Let's enter this beautiful realm of magic.")
 
-# Add callback handlers for each character name
-name_callbacks = [
-    CallbackQueryHandler(select_name, pattern='Jake'),
-    CallbackQueryHandler(select_name, pattern='Zade'),
-    CallbackQueryHandler(select_name, pattern='Josh'),
-    CallbackQueryHandler(select_name, pattern='Aaron'),
-    CallbackQueryHandler(select_name, pattern='Atlas'),
-    CallbackQueryHandler(select_name, pattern='Mike'),
-    CallbackQueryHandler(select_name, pattern='Jane'),
-    CallbackQueryHandler(select_name, pattern='Lily'),
-    CallbackQueryHandler(select_name, pattern='Julliete'),
-    CallbackQueryHandler(select_name, pattern='Adeline'),
-    CallbackQueryHandler(select_name, pattern='Grace'),
-    CallbackQueryHandler(select_name, pattern='Olivia'),
-]
+    # Insert character details into the database
+    data = {
+        '_id': user_id,
+        'name': name,
+        'balance': 0  # Initialize balance to 0
+    }
+    collection.insert_one(data)
+
+    query.message.edit_text(f"Okay, {name}! Let's enter this beautiful realm of magic.")
 
 
 def daily(update: Update, context: CallbackContext):
@@ -130,9 +151,9 @@ def balance(update: Update, context: CallbackContext):
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text="You are not registered. Use /create to create a character.")
 
-    
-    # Send the user's balance to the chat
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your balance: {balance} gold coins")
+
+
+
 # Command handler for /weekly
 def weekly(update: Update, context: CallbackContext):
     # Generate a random reward for the weekly command
