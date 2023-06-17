@@ -125,40 +125,10 @@ def select_name(update: Update, context: CallbackContext):
     query.message.edit_text(f"Okay, {name}! Let's enter this beautiful realm of magic.")
 
 
-def daily(update: Update, context: CallbackContext):
-    user_id = str(update.effective_user.id)
-
-    # Retrieve the user's data from the database
-    data = collection.find_one({'_id': user_id})
-    if data:
-        balance = data.get('balance')
-        new_balance = balance + 10  # Daily bonus of 10 gold coins
-        collection.update_one({'_id': user_id}, {'$set': {'balance': new_balance}})
-
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You earned 10 gold coins. Your balance: {new_balance}")
-    else:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="You are not registered. Use /create to create a character.")
-
-
-def balance(update: Update, context: CallbackContext):
-    user_id = str(update.effective_user.id)
-
-    # Retrieve the user's balance from the database
-    data = collection.find_one({'_id': user_id})
-    if data:
-        balance = data.get('balance')
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your balance: {balance} gold coins")
-    else:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="You are not registered. Use /create to create a character.")
-
-
-
-
-# Function to get the player's data from the database
 def get_player_data(user_id):
     player_data = collection.find_one({'user_id': user_id})
     if not player_data:
-        player_data = {'user_id': user_id, 'balance': 0, 'inventory': [], 'bank_balance': 0}
+        player_data = {'user_id': user_id, 'balance': 0, 'inventory': [], 'bank_balance': 0, 'last_daily': None, 'last_weekly': None}
         collection.insert_one(player_data)
     return player_data
 
@@ -166,13 +136,47 @@ def get_player_data(user_id):
 def update_player_data(user_id, player_data):
     collection.update_one({'user_id': user_id}, {'$set': player_data})
 
+# Function to handle the /bal command
+def balance(update: Update, context: CallbackContext):
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    real_balance = player_data['balance']
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your balance: {real_balance} coins.")
+
+# Function to handle the /daily command
+def daily(update: Update, context: CallbackContext):
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    last_daily = player_data['last_daily']
+    if last_daily is not None:
+        time_diff = datetime.now() - last_daily
+        if time_diff.days < 1:
+            context.bot.send_message(chat_id=update.effective_chat.id, text="You have already claimed your daily reward. Try again tomorrow!")
+            return
+
+    balance = player_data['balance']
+    new_balance = balance + 50  # Increment balance by 50 for daily reward
+    player_data['balance'] = new_balance
+    player_data['last_daily'] = datetime.now()
+    update_player_data(user_id, player_data)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received a daily reward of 50 coins. Your balance is now {new_balance} coins.")
+
 # Function to handle the /weekly command
 def weekly(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
+    last_weekly = player_data['last_weekly']
+    if last_weekly is not None:
+        time_diff = datetime.now() - last_weekly
+        if time_diff.days < 7:
+            remaining_days = 7 - time_diff.days
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"You have already claimed your weekly reward. Try again after {remaining_days} days!")
+            return
+
     balance = player_data['balance']
     new_balance = balance + 100  # Increment balance by 100 for weekly reward
     player_data['balance'] = new_balance
+    player_data['last_weekly'] = datetime.now()
     update_player_data(user_id, player_data)
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received a weekly reward of 100 coins. Your balance is now {new_balance} coins.")
 
@@ -180,9 +184,9 @@ def weekly(update: Update, context: CallbackContext):
 def inventory(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
-    balance = player_data['balance']
+    player_balance = player_data['balance']
     inventory_items = player_data['inventory']
-    inventory_text = f"Your inventory:\nBalance: {balance} coins\nItems: {', '.join(inventory_items)}"
+    inventory_text = f"Your inventory:\nBalance: {player_balance} coins\nItems: {', '.join(inventory_items)}"
     context.bot.send_message(chat_id=update.effective_chat.id, text=inventory_text)
 
 # Function to handle the /hunt command
@@ -201,17 +205,17 @@ def build(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
     balance = player_data['balance']
-    cost = 50  # Cost to build
-    if balance >= cost:
-        new_balance = balance - cost
+    build_cost = 50  # Cost to build
+    if balance >= build_cost:
+        new_balance = balance - build_cost
         player_data['balance'] = new_balance
         # Add the built item to the inventory
         built_item = "Sword"  # Replace with the item you want to build
         player_data['inventory'].append(built_item)
         update_player_data(user_id, player_data)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You built a {built_item} for {cost} coins. Your balance is now {new_balance} coins.")
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have successfully built a sword!")
     else:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have enough coins to build.")
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have enough coins to build a sword.")
 
 # Function to handle the /bank command
 def bank(update: Update, context: CallbackContext):
@@ -219,36 +223,24 @@ def bank(update: Update, context: CallbackContext):
     player_data = get_player_data(user_id)
     balance = player_data['balance']
     bank_balance = player_data['bank_balance']
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Bank balance: {bank_balance} coins\nAvailable balance: {balance} coins")
+    bank_text = f"Your bank balance: {bank_balance} coins\nYour balance: {balance} coins"
+    context.bot.send_message(chat_id=update.effective_chat.id, text=bank_text)
 
-# Function to handle the /deposit command
-def deposit(update: Update, context: CallbackContext):
-    user_id = update.effective_user.id
-    player_data = get_player_data(user_id)
-    balance = player_data['balance']
-    bank_balance = player_data['bank_balance']
-    deposit_amount = balance
-    player_data['balance'] = 0
-    player_data['bank_balance'] = bank_balance + deposit_amount
-    update_player_data(user_id, player_data)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You deposited {deposit_amount} coins to your bank.")
-
-# Function to handle the /withdraw command
+# Function to handle the /wit command
 def withdraw(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
     balance = player_data['balance']
     bank_balance = player_data['bank_balance']
-    withdraw_amount = bank_balance
-    player_data['balance'] = balance + withdraw_amount
-    player_data['bank_balance'] = 0
-    update_player_data(user_id, player_data)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You withdrew {withdraw_amount} coins from your bank.")
-
-
-
-# Add the command handlers to the dispatcher
-
+    if bank_balance > 0:
+        new_balance = balance + bank_balance
+        new_bank_balance = 0
+        player_data['balance'] = new_balance
+        player_data['bank_balance'] = new_bank_balance
+        update_player_data(user_id, player_data)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You withdrew {bank_balance} coins from your bank. Your balance is now {new_balance} coins.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have any coins in your bank.")
 
 
 
