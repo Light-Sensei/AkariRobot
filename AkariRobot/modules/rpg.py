@@ -143,42 +143,53 @@ def balance(update: Update, context: CallbackContext):
     real_balance = player_data['balance']
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"Your balance: {real_balance} coins.")
 
-# Function to handle the /daily command
 def daily(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
-    last_daily = player_data['last_daily']
-    if last_daily is not None:
-        time_diff = datetime.now() - last_daily
-        if time_diff.days < 1:
-            context.bot.send_message(chat_id=update.effective_chat.id, text="You have already claimed your daily reward. Try again tomorrow!")
-            return
 
-    balance = player_data['balance']
-    new_balance = balance + 50  # Increment balance by 50 for daily reward
-    player_data['balance'] = new_balance
-    player_data['last_daily'] = datetime.now()
-    update_player_data(user_id, player_data)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received a daily reward of 50 coins. Your balance is now {new_balance} coins.")
+    if player_data['last_daily_claim'] != datetime.date.today():
+        # Perform the actions for the daily reward
+        player_data['balance'] += 100
+
+        # Update the last daily claim date
+        player_data['last_daily_claim'] = datetime.date.today()
+
+        # Update the player data in the database
+        update_player_data(user_id, player_data)
+
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have claimed the daily reward! You received 100 coins.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have already claimed the daily reward today.")
 
 # Function to handle the /weekly command
 def weekly(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
-    last_weekly = player_data['last_weekly']
-    if last_weekly is not None:
-        time_diff = datetime.now() - last_weekly
-        if time_diff.days < 7:
-            remaining_days = 7 - time_diff.days
-            context.bot.send_message(chat_id=update.effective_chat.id, text=f"You have already claimed your weekly reward. Try again after {remaining_days} days!")
-            return
 
-    balance = player_data['balance']
-    new_balance = balance + 100  # Increment balance by 100 for weekly reward
-    player_data['balance'] = new_balance
-    player_data['last_weekly'] = datetime.now()
-    update_player_data(user_id, player_data)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You received a weekly reward of 100 coins. Your balance is now {new_balance} coins.")
+    if player_data['last_weekly_claim'] != datetime.date.today():
+        # Perform the actions for the weekly reward
+        random_reward = random.choice(['sword', 'coins', 'steel'])
+        if random_reward == 'sword':
+            # Give a high-quality sword to the player
+            player_data['inventory']['sword'] = True
+            context.bot.send_message(chat_id=update.effective_chat.id, text="Congratulations! You received a high-quality sword.")
+        elif random_reward == 'coins':
+            # Give 500 coins to the player
+            player_data['balance'] += 500
+            context.bot.send_message(chat_id=update.effective_chat.id, text="Congratulations! You received 500 coins.")
+        elif random_reward == 'steel':
+            # Give steel to the player
+            player_data['inventory']['steel'] = True
+            context.bot.send_message(chat_id=update.effective_chat.id, text="Congratulations! You received steel.")
+
+        # Update the last weekly claim date
+        player_data['last_weekly_claim'] = datetime.date.today()
+
+        # Update the player data in the database
+        update_player_data(user_id, player_data)
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You have already claimed the weekly reward this week.")
+
 
 # Function to handle the /inv command
 def inventory(update: Update, context: CallbackContext):
