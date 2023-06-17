@@ -226,22 +226,50 @@ def bank(update: Update, context: CallbackContext):
     bank_text = f"Your bank balance: {bank_balance} coins\nYour balance: {balance} coins"
     context.bot.send_message(chat_id=update.effective_chat.id, text=bank_text)
 
-# Function to handle the /wit command
+def deposit(update: Update, context: CallbackContext):
+    user_id = update.effective_user.id
+    player_data = get_player_data(user_id)
+    balance = player_data['balance']
+    amount = int(context.args[0])  # Get the amount to deposit from the command arguments
+
+    if amount <= 0:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Invalid deposit amount.")
+        return
+
+    if balance < amount:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Insufficient balance.")
+        return
+
+    bank_balance = player_data['bank_balance']
+    new_balance = balance - amount
+    new_bank_balance = bank_balance + amount
+    player_data['balance'] = new_balance
+    player_data['bank_balance'] = new_bank_balance
+    update_player_data(user_id, player_data)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You deposited {amount} coins into your bank. Your balance is now {new_balance} coins.")
+
+# Function to handle the /withdraw command
 def withdraw(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
     player_data = get_player_data(user_id)
     balance = player_data['balance']
-    bank_balance = player_data['bank_balance']
-    if bank_balance > 0:
-        new_balance = balance + bank_balance
-        new_bank_balance = 0
-        player_data['balance'] = new_balance
-        player_data['bank_balance'] = new_bank_balance
-        update_player_data(user_id, player_data)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You withdrew {bank_balance} coins from your bank. Your balance is now {new_balance} coins.")
-    else:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have any coins in your bank.")
+    amount = int(context.args[0])  # Get the amount to withdraw from the command arguments
 
+    if amount <= 0:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Invalid withdrawal amount.")
+        return
+
+    bank_balance = player_data['bank_balance']
+    if bank_balance < amount:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Insufficient funds in your bank.")
+        return
+
+    new_balance = balance + amount
+    new_bank_balance = bank_balance - amount
+    player_data['balance'] = new_balance
+    player_data['bank_balance'] = new_bank_balance
+    update_player_data(user_id, player_data)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"You withdrew {amount} coins from your bank. Your balance is now {new_balance} coins.")
 
 
 
