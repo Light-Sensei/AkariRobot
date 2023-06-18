@@ -297,6 +297,7 @@ build_callbacks = [
     CallbackQueryHandler(select_build_item, pattern='build_castle'),
     CallbackQueryHandler(select_build_item, pattern='build_minarets'),
     CallbackQueryHandler(select_build_item, pattern='build_towers'),
+]
 
 
 
