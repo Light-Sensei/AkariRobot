@@ -202,21 +202,33 @@ def hunt(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"You went hunting and earned {earnings} coins. Your balance is now {new_balance} coins.")
 
 # Function to handle the /build command
-def build(update: Update, context: CallbackContext):
-    user_id = update.effective_user.id
-    player_data = get_player_data(user_id)
-    balance = player_data['balance']
-    cost = 50  # Cost to build
-    if balance >= cost:
-        new_balance = balance - cost
-        player_data['balance'] = new_balance
-        # Add the built item to the inventory
-        built_item = "Sword"  # Replace with the item you want to build
-        player_data['inventory'].append(built_item)
-        update_player_data(user_id, player_data)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You built a {built_item} for {cost} coins. Your balance is now {new_balance} coins.")
+def select_build_item(update: Update, context: CallbackContext):
+    query = update.callback_query
+    item = query.data.replace('build_', '')
+    query.answer()
+    
+    # Check if the item is fortress or castle
+    if item == 'fortress':
+        price = 1000
+    elif item == 'castle':
+        price = 5000
+    elif item in ['sword', 'towers', 'garden', 'storage', 'minarets', 'farm', 'house']:
+        price = 500
     else:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have enough coins to build.")
+        price = 0
+    
+    # Get the user's balance from the database
+    user_id = query.from_user.id
+    balance = player_data.get(str(user_id), {}).get('balance', 0)
+    
+    if balance >= price:
+        # User has enough money, update the balance and display success message
+        player_data[str(user_id)]['balance'] -= price
+        query.message.edit_text(f"You have successfully bought a {item}!")
+    else:
+        # User does not have enough money, display error message
+        query.message.edit_text("You don't have enough money to buy this item.")
+
 
 def deposit(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
@@ -274,6 +286,18 @@ deposit_handler = CommandHandler("deposit", deposit, run_async=True)
 withdraw_handler = CommandHandler("withdraw", withdraw, run_async=True)
 daily_handler = CommandHandler("daily", daily, run_async=True)
 balance_handler = CommandHandler("bal", balance, run_async=True)
+build_callbacks = [
+    CallbackQueryHandler(select_build_item, pattern='build_sword'),
+    CallbackQueryHandler(select_build_item, pattern='build_shield'),
+    CallbackQueryHandler(select_build_item, pattern='build_house'),
+    CallbackQueryHandler(select_build_item, pattern='build_farm'),
+    CallbackQueryHandler(select_build_item, pattern='build_garden'),
+    CallbackQueryHandler(select_build_item, pattern='build_storage'),
+    CallbackQueryHandler(select_build_item, pattern='build_fortress'),
+    CallbackQueryHandler(select_build_item, pattern='build_castle'),
+    CallbackQueryHandler(select_build_item, pattern='build_minarets'),
+    CallbackQueryHandler(select_build_item, pattern='build_towers'),
+
 
 
 gender_callback_handler = CallbackQueryHandler(select_gender, pattern='^(male|female)$', run_async=True)
@@ -294,6 +318,9 @@ dispatcher.add_handler(gender_callback_handler)
 dispatcher.add_handler(name_callback_handler)
 dispatcher.add_handler(daily_handler)
 dispatcher.add_handler(balance_handler)
+dispatcher.add_handler(CommandHandler('build', build))
+for callback in build_callbacks:
+    dispatcher.add_handler(callback)
 
 
 __mod_name__ = "RPG"
