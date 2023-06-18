@@ -285,7 +285,7 @@ deposit_handler = CommandHandler("deposit", deposit, run_async=True)
 withdraw_handler = CommandHandler("withdraw", withdraw, run_async=True)
 daily_handler = CommandHandler("daily", daily, run_async=True)
 balance_handler = CommandHandler("bal", balance, run_async=True)
-select_build_item = CommandHandler("build",build, run_async=True)
+select_build_item = CommandHandler("select_build_item",build, run_async=True)
 build_callbacks = [
     CallbackQueryHandler(select_build_item, pattern='build_sword'),
     CallbackQueryHandler(select_build_item, pattern='build_shield'),
