@@ -337,7 +337,6 @@ __handlers__ = [
     withdraw_handler,
     deposit_handler,
     bank_handler,
-    build_handler,
     inventory_handler,
     playrpg_handler,
     hunt_handler,
