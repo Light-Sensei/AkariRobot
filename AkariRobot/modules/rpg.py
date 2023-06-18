@@ -285,6 +285,7 @@ deposit_handler = CommandHandler("deposit", deposit, run_async=True)
 withdraw_handler = CommandHandler("withdraw", withdraw, run_async=True)
 daily_handler = CommandHandler("daily", daily, run_async=True)
 balance_handler = CommandHandler("bal", balance, run_async=True)
+select_build_item = CommandHandler("build",build, run_async=True)
 build_callbacks = [
     CallbackQueryHandler(select_build_item, pattern='build_sword'),
     CallbackQueryHandler(select_build_item, pattern='build_shield'),
@@ -317,7 +318,7 @@ dispatcher.add_handler(gender_callback_handler)
 dispatcher.add_handler(name_callback_handler)
 dispatcher.add_handler(daily_handler)
 dispatcher.add_handler(balance_handler)
-dispatcher.add_handler(CommandHandler('build', build))
+dispatcher.add_handler(select_build_item)
 for callback in build_callbacks:
     dispatcher.add_handler(callback)
 
@@ -330,6 +331,7 @@ __command_list__ = [
 __handlers__ = [
     create_handler,
     daily_handler,
+    select_build_item,
     weekly_handler,
     balance_handler,
     withdraw_handler,
