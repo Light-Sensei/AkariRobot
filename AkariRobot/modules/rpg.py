@@ -202,32 +202,85 @@ def hunt(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"You went hunting and earned {earnings} coins. Your balance is now {new_balance} coins.")
 
 # Function to handle the /build command
+def build(update: Update, context: CallbackContext):
+    build_keyboard = [
+        [InlineKeyboardButton("Sword", callback_data='build_sword')],
+        [InlineKeyboardButton("Shield", callback_data='build_shield')],
+        [InlineKeyboardButton("House", callback_data='build_house')],
+        [InlineKeyboardButton("Farm", callback_data='build_farm')],
+        [InlineKeyboardButton("Garden", callback_data='build_garden')],
+        [InlineKeyboardButton("Storage", callback_data='build_storage')],
+        [InlineKeyboardButton("Fortress", callback_data='build_fortress')],
+        [InlineKeyboardButton("Castle", callback_data='build_castle')],
+        [InlineKeyboardButton("Minarets", callback_data='build_minarets')],
+        [InlineKeyboardButton("Towers", callback_data='build_towers')],
+    ]
+    
+    reply_markup = InlineKeyboardMarkup(build_keyboard)
+    update.message.reply_text("Select an item to build:", reply_markup=reply_markup)
+
+# Callback handler for build item selection
 def select_build_item(update: Update, context: CallbackContext):
     query = update.callback_query
-    item = query.data.replace('build_', '')
+    item = query.data.replace("build_", "")
     query.answer()
     
-    # Check if the item is fortress or castle
-    if item == 'fortress':
-        price = 1000
-    elif item == 'castle':
-        price = 5000
-    elif item in ['sword', 'towers', 'garden', 'storage', 'minarets', 'farm', 'house']:
-        price = 500
-    else:
-        price = 0
+    user_id = str(query.from_user.id)
+    player_info = player_data.get(user_id, {})
     
-    # Get the user's balance from the database
-    user_id = query.from_user.id
-    balance = player_data.get(str(user_id), {}).get('balance', 0)
-    
-    if balance >= price:
-        # User has enough money, update the balance and display success message
-        player_data[str(user_id)]['balance'] -= price
-        query.message.edit_text(f"You have successfully bought a {item}!")
+    if item in ["sword", "shield", "house", "farm", "garden", "storage", "fortress", "castle", "minarets", "towers"]:
+        player_info['built_items'] = player_info.get('built_items', {})
+        player_info['built_items'][item] = player_info['built_items'].get(item, 0) + 1
+        player_data[user_id] = player_info
+        query.edit_message_text(f"You have successfully built a {item}!")
     else:
-        # User does not have enough money, display error message
-        query.message.edit_text("You don't have enough money to buy this item.")
+        query.edit_message_text("Invalid build item.")
+
+# Base Command
+def base(update: Update, context: CallbackContext):
+    user_id = str(update.effective_user.id)
+    player_info = player_data.get(user_id, {})
+    built_items = player_info.get('built_items', {})
+    
+    base_message = "Your base:\n\n"
+    for item, count in built_items.items():
+        base_message += f"{item.capitalize()}: {count}\n"
+    
+    update.message.reply_text(base_message)
+
+# Create Kingdom Command
+def create_kingdom(update: Update, context: CallbackContext):
+    user_id = str(update.effective_user.id)
+    player_info = player_data.get(user_id, {})
+    built_items = player_info.get('built_items', {})
+    
+    minarets_count = built_items.get('minarets', 0)
+    fortress_count = built_items.get('fortress', 0)
+    castle_count = built_items.get('castle', 0)
+    house_count = built_items.get('house', 0)
+    storage_count = built_items.get('storage', 0)
+    farm_count = built_items.get('farm', 0)
+    garden_count = built_items.get('garden', 0)
+    
+    if minarets_count >= 10 and fortress_count >= 1 and castle_count >= 1 and house_count >= 20 and storage_count >= 1 and farm_count >= 5 and garden_count >= 10:
+        player_info['kingdom'] = True
+        player_data[user_id] = player_info
+        update.message.reply_text("Congratulations! You have created a kingdom!")
+    else:
+        update.message.reply_text("You don't have enough built items to create a kingdom.")
+
+# Upgrade Kingdom Command
+def upgrade_kingdom(update: Update, context: CallbackContext):
+    user_id = str(update.effective_user.id)
+    player_info = player_data.get(user_id, {})
+    kingdom = player_info.get('kingdom', False)
+    
+    if kingdom:
+        # Upgrade the kingdom logic
+        # Add your upgrade logic here
+        update.message.reply_text("Your kingdom has been upgraded!")
+    else:
+        update.message.reply_text("You don't have a kingdom to upgrade.")
 
 
 def deposit(update: Update, context: CallbackContext):
@@ -285,20 +338,10 @@ deposit_handler = CommandHandler("deposit", deposit, run_async=True)
 withdraw_handler = CommandHandler("withdraw", withdraw, run_async=True)
 daily_handler = CommandHandler("daily", daily, run_async=True)
 balance_handler = CommandHandler("bal", balance, run_async=True)
-select_build_item = CommandHandler("select_build_item",select_build_item, run_async=True)
-build_callbacks = [
-    CallbackQueryHandler(select_build_item, pattern='build_sword'),
-    CallbackQueryHandler(select_build_item, pattern='build_shield'),
-    CallbackQueryHandler(select_build_item, pattern='build_house'),
-    CallbackQueryHandler(select_build_item, pattern='build_farm'),
-    CallbackQueryHandler(select_build_item, pattern='build_garden'),
-    CallbackQueryHandler(select_build_item, pattern='build_storage'),
-    CallbackQueryHandler(select_build_item, pattern='build_fortress'),
-    CallbackQueryHandler(select_build_item, pattern='build_castle'),
-    CallbackQueryHandler(select_build_item, pattern='build_minarets'),
-    CallbackQueryHandler(select_build_item, pattern='build_towers'),
-]
-
+BUILD_HANDLER = CommandHandler("build", build)
+BASE_HANDLER = CommandHandler("base", base)
+CREATE_KINGDOM_HANDLER = CommandHandler("create_kingdom", create_kingdom)
+UPGRADE_KINGDOM_HANDLER = CommandHandler("upgrade_kingdom", upgrade_kingdom)
 
 
 gender_callback_handler = CallbackQueryHandler(select_gender, pattern='^(male|female)$', run_async=True)
@@ -318,10 +361,10 @@ dispatcher.add_handler(gender_callback_handler)
 dispatcher.add_handler(name_callback_handler)
 dispatcher.add_handler(daily_handler)
 dispatcher.add_handler(balance_handler)
-dispatcher.add_handler(select_build_item)
-for callback in build_callbacks:
-    dispatcher.add_handler(callback)
-
+dispatcher.add_handler(BUILD_HANDLER)
+dispatcher.add_handler(BASE_HANDLER)
+dispatcher.add_handler(CREATE_KINGDOM_HANDLER)
+dispatcher.add_handler(UPGRADE_KINGDOM_HANDLER)
 
 __mod_name__ = "RPG"
 __command_list__ = [
