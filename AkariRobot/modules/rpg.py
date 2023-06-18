@@ -308,7 +308,6 @@ name_callback_handler = CallbackQueryHandler(select_name, pattern='^(Jake|Zade|J
 dispatcher.add_handler(weekly_handler)
 dispatcher.add_handler(inventory_handler)
 dispatcher.add_handler(hunt_handler)
-dispatcher.add_handler(build_handler)
 dispatcher.add_handler(bank_handler)
 dispatcher.add_handler(deposit_handler)
 dispatcher.add_handler(withdraw_handler)
