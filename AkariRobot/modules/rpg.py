@@ -408,7 +408,7 @@ __handlers__ = [
     deposit_handler,
     bank_handler,
     select_job,
-    job_handler,
+    JOB_handler,
     inventory_handler,
     playrpg_handler,
     hunt_handler,
