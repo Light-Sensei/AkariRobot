@@ -219,6 +219,7 @@ def build(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(build_keyboard)
     update.message.reply_text("Select an item to build:", reply_markup=reply_markup)
 
+def job(update: Update, context: CallbackContext):
     job_keyboard = [
         [InlineKeyboardButton("Warrior", callback_data="Warrior"), InlineKeyboardButton("Mage", callback_data="Mage")],
         [InlineKeyboardButton("Rogue", callback_data="Rogue"), InlineKeyboardButton("Cleric", callback_data="Cleric")],
@@ -363,7 +364,8 @@ balance_handler = CommandHandler("bal", balance, run_async=True)
 BUILD_HANDLER = CommandHandler("build", build)
 BASE_HANDLER = CommandHandler("base", base)
 CREATE_KINGDOM_HANDLER = CommandHandler("create_kingdom", create_kingdom)
-UPGRADE_KINGDOM_HANDLER = CommandHandler("upgrade_kingdom", upgrade_kingdom)
+UPGRADE_KINGDOM_HANDLER = CommandHandler("upgrade_kingdom", upgrade_kingdom
+JOB_HANDLER = CommandHandler("job",job)
 
 
 gender_callback_handler = CallbackQueryHandler(select_gender, pattern='^(male|female)$', run_async=True)
@@ -389,6 +391,7 @@ dispatcher.add_handler(BUILD_HANDLER)
 dispatcher.add_handler(BASE_HANDLER)
 dispatcher.add_handler(CREATE_KINGDOM_HANDLER)
 dispatcher.add_handler(UPGRADE_KINGDOM_HANDLER)
+dispatcher.add_handler(JOB_HANDLER)
 
 __mod_name__ = "RPG"
 __command_list__ = [
@@ -405,6 +408,7 @@ __handlers__ = [
     deposit_handler,
     bank_handler,
     select_job,
+    job_handler,
     inventory_handler,
     playrpg_handler,
     hunt_handler,
