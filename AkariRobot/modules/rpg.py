@@ -219,29 +219,6 @@ def build(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(build_keyboard)
     update.message.reply_text("Select an item to build:", reply_markup=reply_markup)
 
-def job(update: Update, context: CallbackContext):
-    job_keyboard = [
-        [InlineKeyboardButton("Warrior", callback_data="Warrior"), InlineKeyboardButton("Mage", callback_data="Mage")],
-        [InlineKeyboardButton("Rogue", callback_data="Rogue"), InlineKeyboardButton("Cleric", callback_data="Cleric")],
-    ]
-    reply_markup = InlineKeyboardMarkup(job_keyboard)
-    query.message.reply_text("Choose your job:", reply_markup=reply_markup)
-
-
-# Callback handler for job selection
-def select_job(update: Update, context: CallbackContext):
-    query = update.callback_query
-    user_id = str(query.from_user.id)
-    job = query.data
-    query.answer()
-
-    # Save the user's job to the database
-    collection.update_one({'_id': user_id}, {'$set': {'job': job}})
-
-    query.message.reply_text(f"Congratulations! You have chosen the {job} job.")
-
-
-
 # Callback handler for build item selection
 def select_build_item(update: Update, context: CallbackContext):
     query = update.callback_query
@@ -365,17 +342,14 @@ BUILD_HANDLER = CommandHandler("build", build)
 BASE_HANDLER = CommandHandler("base", base)
 CREATE_KINGDOM_HANDLER = CommandHandler("create_kingdom", create_kingdom)
 UPGRADE_KINGDOM_HANDLER = CommandHandler("upgrade_kingdom", upgrade_kingdom)
-JOB_HANDLER = CommandHandler("job",job)
 
 
 gender_callback_handler = CallbackQueryHandler(select_gender, pattern='^(male|female)$', run_async=True)
 name_callback_handler = CallbackQueryHandler(select_name, pattern='^(Jake|Zade|Josh|Aaron|Atlas|Mike|Jane|Lily|Julliete|Adeline|Grace|Olivia)$', run_async=True)
-select_job = CallbackQueryHandler(select_job, pattern='^(Warrior|Mage|Rogue|Cleric)$')
 
 
 
 dispatcher.add_handler(weekly_handler)
-dispatcher.add_handler(select_job)
 dispatcher.add_handler(inventory_handler)
 dispatcher.add_handler(hunt_handler)
 dispatcher.add_handler(bank_handler)
@@ -391,7 +365,6 @@ dispatcher.add_handler(BUILD_HANDLER)
 dispatcher.add_handler(BASE_HANDLER)
 dispatcher.add_handler(CREATE_KINGDOM_HANDLER)
 dispatcher.add_handler(UPGRADE_KINGDOM_HANDLER)
-dispatcher.add_handler(JOB_HANDLER)
 
 __mod_name__ = "RPG"
 __command_list__ = [
@@ -407,15 +380,12 @@ __handlers__ = [
     withdraw_handler,
     deposit_handler,
     bank_handler,
-    select_job,
-    JOB_handler,
     inventory_handler,
     playrpg_handler,
     hunt_handler,
     gender_callback_handler,
     name_callback_handler,
 ] 
-
 
 
 
