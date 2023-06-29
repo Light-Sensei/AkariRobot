@@ -368,7 +368,7 @@ UPGRADE_KINGDOM_HANDLER = CommandHandler("upgrade_kingdom", upgrade_kingdom)
 
 gender_callback_handler = CallbackQueryHandler(select_gender, pattern='^(male|female)$', run_async=True)
 name_callback_handler = CallbackQueryHandler(select_name, pattern='^(Jake|Zade|Josh|Aaron|Atlas|Mike|Jane|Lily|Julliete|Adeline|Grace|Olivia)$', run_async=True)
-select_job = CallbackQueryHandler(select_job, pattern='^(Warrior|Mage|Rogue|Cleric)$'))
+select_job = CallbackQueryHandler(select_job, pattern='^(Warrior|Mage|Rogue|Cleric)$')
 
 
 
