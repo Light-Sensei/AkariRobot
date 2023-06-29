@@ -364,7 +364,7 @@ balance_handler = CommandHandler("bal", balance, run_async=True)
 BUILD_HANDLER = CommandHandler("build", build)
 BASE_HANDLER = CommandHandler("base", base)
 CREATE_KINGDOM_HANDLER = CommandHandler("create_kingdom", create_kingdom)
-UPGRADE_KINGDOM_HANDLER = CommandHandler("upgrade_kingdom", upgrade_kingdom
+UPGRADE_KINGDOM_HANDLER = CommandHandler("upgrade_kingdom", upgrade_kingdom)
 JOB_HANDLER = CommandHandler("job",job)
 
 
